@@ -42,7 +42,7 @@ module.exports = {
         type: Sequelize.STRING(50),
       },
       sale_date: {
-        type: Sequelize.DATETIME,
+        type: Sequelize.DATE,
       },
     })
   },
