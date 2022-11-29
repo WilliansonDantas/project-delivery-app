@@ -30,16 +30,16 @@ module.exports = {
         },
       },
       delivery_address: {
+        type: Sequelize.STRING,
         allowNull: false,
-        type: Sequelize.STRING(100),
       },
       delivery_number: {
+        type: Sequelize.STRING,
         allowNull: false,
-        type: Sequelize.STRING(50),
       },
       status: {
+        type: Sequelize.STRING,
         allowNull:false,
-        type: Sequelize.STRING(50),
       },
       sale_date: {
         type: Sequelize.DATE,
