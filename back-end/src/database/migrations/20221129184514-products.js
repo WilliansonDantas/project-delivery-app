@@ -11,12 +11,12 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         unique: true,
       },
       url_image: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(200),
         default: '',
       },
       price: {
@@ -26,8 +26,6 @@ module.exports = {
     })
   },
 
-  // definiçao do tamanho dos campos
-  
   down: async (queryInterface, Sequelize) => {
     return queryInterface.dropTable('products');
   }
