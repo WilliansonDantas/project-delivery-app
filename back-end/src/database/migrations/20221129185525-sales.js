@@ -31,10 +31,18 @@ module.exports = {
       },
       delivery_address: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
+      },
+      delivery_number: {
+        allowNull: false,
+        type: Sequelize.STRING(50),
+      },
+      status: {
+        allowNull:false,
+        type: Sequelize.STRING(50),
       },
       sale_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATETIME,
       },
     })
   },
