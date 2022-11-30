@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const registerController = require('../controller/registerController');
+const { validateRegister } = require('../middlewares');
 
 const registerRouter = Router();
 
-registerRouter.post('/register', (req, res, next) => registerController(req, res, next));
+registerRouter.post('/register', validateRegister, registerController);
