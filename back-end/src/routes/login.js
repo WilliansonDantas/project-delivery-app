@@ -1,9 +1,10 @@
-const { Router } = require("express");
+const { Router } = require('express');
+const { validateLogin } = require('../middlewares');
 
-const loginRouter = Router()
+const loginRouter = Router();
 
-const { getToken } = require('../controller/loginCrontoller')
+const { getToken } = require('../controller/loginCrontoller');
 
-loginRouter.post('/login', (req, res, next) => getToken(req,res,next));
+loginRouter.post('/login', validateLogin, getToken);
 
 module.exports = loginRouter;
