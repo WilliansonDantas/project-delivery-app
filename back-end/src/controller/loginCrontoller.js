@@ -8,7 +8,7 @@ const getToken = async (req, res) => {
   const md5Password = md5(password)
   
   try {
-    const data = await LoginService.getUser({ email, md5Password });
+    const data = await LoginService.getUser(email, md5Password);
     const token = generateToken(data);
     return res.status(200).json({ token });
 

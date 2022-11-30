@@ -1,6 +1,6 @@
-const User = require('../database/models/User');
+const { User }= require('../database/models');
 
-const getUser = async ({ email, password }) => {
+const getUser = async ( email, password ) => {
   const userData = await User.findOne({ where: { email } });
 
   if (userData && userData.password === password) return userData;

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     total_price: DataTypes.DECIMAL,
     delivery_addres: DataTypes.STRING,
     delivery_number: DataTypes.STRING,
-    sale_date: DataTypes.DATETIME,
+    sale_date: DataTypes.DATE,
     status: DataTypes.STRING
   },
   {
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Sale.associate = (models) => {
-    Sale.hasMany(models.SalesProduct, { 
+    Sale.hasMany(models.SalesProducts, { 
       constraint: true,
       foreignKey: 'saleId',
       as: 'sale_id'
