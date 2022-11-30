@@ -9,8 +9,9 @@ const getToken = async (req, res) => {
   
   try {
     const data = await LoginService.getUser(email, md5Password);
+    const { name, role } = data;
     const token = generateToken(data);
-    return res.status(200).json({ token });
+    return res.status(200).json({ name, role, email, token });
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
