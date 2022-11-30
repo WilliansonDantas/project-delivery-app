@@ -1,17 +1,20 @@
-// const LoginService = require('../services/login.service');
-import generateToken from '../token/generateToken';
+const LoginService = require('../service/loginService')
+const generateToken = require('../token/generateToken');
+const md5 = require('md5')
 
 const getToken = async (req, res) => {
   const { email, password } = req.body;
-  const data = await LoginService.getUsers({ email, password });
 
-  if (!data) return res.status(400).json({ message: 'Invalid fields' });
+  const md5Password = md5(password)
+  
+  try {
+    const data = await LoginService.getUser({ email, md5Password });
+    const token = generateToken(data);
+    return res.status(200).json({ token });
 
-  const token = generateToken(data);
-
-  res.status(200).json({ token });
+  } catch (error) {
+    return res.status(400).json({ message: error.message})
+  }
 };
 
-export default {
-  getToken,
-};
+module.exports = { getToken };

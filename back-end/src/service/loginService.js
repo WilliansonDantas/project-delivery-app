@@ -1,13 +1,11 @@
-import User from '../database/models/User';
+const User = require('../database/models/User');
 
-const getUsers = async ({ email, password }) => {
-  const usersData = await User.findOne({ where: { email } });
+const getUser = async ({ email, password }) => {
+  const userData = await User.findOne({ where: { email } });
 
-  if (usersData && usersData.password === password) return usersData;
+  if (userData && userData.password === password) return userData;
   
-  return false;
+  throw new Error('Invalid Fields')
 };
 
-export default {
-  getUsers,
-};
+module.exports = { getUser };

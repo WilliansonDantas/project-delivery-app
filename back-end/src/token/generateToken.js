@@ -13,4 +13,4 @@ const generateToken = ({ email }) => {
   return token;
 };
 
-export default generateToken
+module.exports = generateToken;

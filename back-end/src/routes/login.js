@@ -1,9 +1,9 @@
 const { Router } = require("express");
 
-const router = Router()
+const loginRouter = Router()
 
-import loginController from '../controller/loginCrontoller'
+const { getToken } = require('../controller/loginCrontoller')
 
-router.post('/login', loginController.getToken)
+loginRouter.post('/login', (req, res, next) => getToken(req,res,next));
 
-export default router;
+module.exports = loginRouter;

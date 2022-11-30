@@ -1,5 +1,3 @@
-import loginRouter from './login'
+const loginRouter = require('./login')
 
-export { 
-  loginRouter
-}
+module.exports = loginRouter;
