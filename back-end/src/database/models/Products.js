@@ -11,5 +11,13 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
 
+  Product.associate = (models) => {
+    Product.hasMany(models.SalesProducts, { 
+      constraint: true,
+      foreignKey: 'productId',
+      as: 'product_id'
+    });
+  };
+
   return Product;
 };

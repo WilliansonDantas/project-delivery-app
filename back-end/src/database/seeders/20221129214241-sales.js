@@ -14,7 +14,7 @@ module.exports = {
     {
       id:2,
       user_id:3,
-      seller_id:4,
+      seller_id:1,
       total_price:2.2,
       delivery_address: 'Rua tal',
       delivery_number: 50,
