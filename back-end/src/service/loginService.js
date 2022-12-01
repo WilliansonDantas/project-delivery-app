@@ -5,7 +5,6 @@ const getUser = async (email, password) => {
 
   if (!userData) throw new Error('User not found');
 
-  console.log(userData);
   if (userData && userData.password === password) return userData;
 
   throw new Error('Invalid fields');
