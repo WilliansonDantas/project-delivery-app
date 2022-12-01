@@ -21,9 +21,9 @@ function Login() {
     <>
       {/* adicionar um header */}
       <form className="user-login-area">
-        <EmailInput setEmail={ setEmail } />
+        <EmailInput dataTestId="common_login__input-email" setEmail={ setEmail } />
         <GenericInput
-          data-testid="common_login__input-email"
+          dataTestId="common_login__input-password"
           type="password"
           selector="password"
           fieldName="Senha"
@@ -38,6 +38,7 @@ function Login() {
         />
       </form>
       <RegisterBtn
+        dataTestId="common_login__input-password"
         routeSuffix="register"
         navigation="/register"
         btnName="Register"

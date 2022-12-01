@@ -1,17 +1,16 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function RegisterBtn() {
+  const history = useHistory();
   return (
-    // <Link>
-  // to="/register"
     <button
+      onClick={ () => history.push('/register') }
       type="button"
       data-testid="common_login__button-register"
     >
       Ainda não tenho conta
     </button>
-    // </Link>
   );
 }
 
