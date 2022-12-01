@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 
 function renderSpan() {
   return (
-    <span>O e-mail deve ser um e-mail válido. Exemplo: exemplo@exemplo.com</span>
+    <span
+      data-testid="common_login__element-invalid-email"
+    >
+      O e-mail deve ser um e-mail válido. Exemplo: exemplo@exemplo.com
+
+    </span>
   );
 }
 
