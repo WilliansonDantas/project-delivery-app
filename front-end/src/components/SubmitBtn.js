@@ -13,13 +13,17 @@ function LoginBtn() {
   }
 
   return (
-    <Link
+
+    // <Link>
+    <button
+      type="button"
       onClick={ async () => login({ email, password }) }
       data-testid="common_login__button-login"
       to="/login"
     >
       Login
-    </Link>
+    </button>
+    // </Link>
   );
 }
 
