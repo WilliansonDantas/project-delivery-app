@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import LoginContext from '../contexts/LoginContext';
 import { postData } from '../services/requests';
 
@@ -13,13 +13,17 @@ function LoginBtn() {
   }
 
   return (
-    <Link
+
+    // <Link>
+    <button
+      type="button"
       onClick={ async () => login({ email, password }) }
       data-testid="common_login__button-login"
-      to="/login"
+      // to="/login"
     >
       Login
-    </Link>
+    </button>
+    // </Link>
   );
 }
 
