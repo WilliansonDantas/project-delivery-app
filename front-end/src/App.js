@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import React from 'react';
 import Login from './pages/Login';
 import LoginProvider from './contexts/LoginProvider';
@@ -9,7 +9,10 @@ function App() {
     <UserProvider>
       <LoginProvider>
         <Switch>
-          <Route exact path="/" component={ Login } />
+          <Route exact path="/" to="/login">
+            <Redirect to="/login" />
+          </Route>
+          <Route path="/login" component={ Login } />
         </Switch>
       </LoginProvider>
     </UserProvider>

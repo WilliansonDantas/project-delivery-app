@@ -14,7 +14,6 @@ function Login() {
 
   useEffect(() => {
     const userLoggedIn = JSON.parse(localStorage.getItem('userdata'));
-    console.log(userLoggedIn.token);
     if (userLoggedIn) history.push('/products');
   });
 
