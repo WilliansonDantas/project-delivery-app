@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import EmailInput from '../components/EmailInput';
 import SubmitBtn from '../components/SubmitBtn';
 import RegisterBtn from '../components/RegisterBtn';
@@ -9,6 +10,13 @@ function Login() {
   const { email, setEmail, password, setPassword } = useContext(LoginContext);
 
   const obj = { email, password };
+  const history = useHistory();
+
+  useEffect(() => {
+    const userLoggedIn = JSON.parse(localStorage.getItem('userdata'));
+    console.log(userLoggedIn.token);
+    if (userLoggedIn) history.push('/products');
+  });
 
   return (
     <>
