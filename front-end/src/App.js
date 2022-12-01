@@ -9,7 +9,7 @@ function App() {
     <UserProvider>
       <LoginProvider>
         <Switch>
-          <Route exact path="/" to="/login">
+          <Route exact path="/">
             <Redirect to="/login" />
           </Route>
           <Route path="/login" component={ Login } />
