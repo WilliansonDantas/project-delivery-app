@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { postData } from '../services/requests';
 
 const nameMinimumSize = 12;
@@ -10,8 +11,16 @@ function Register() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
+  const history = useHistory();
+
   function emailValidation(useremail) {
     return (/\S+@\S+\.\S+/.test(useremail));
+  }
+
+  async function createUser() {
+    const result = await postData('/register', { name, email, password });
+    console.log(result);
+    if (result === 'Created') history.push('/customer/products');
   }
 
   useEffect(() => {
@@ -64,7 +73,7 @@ function Register() {
         <button
           disabled={ !valid }
           type="button"
-          onClick={ async () => postData('/register', { name, email, password }) }
+          onClick={ async () => createUser() }
           data-testid="common_register__button-register"
         >
           Cadastrar
