@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const jwtEvaluationKey = require('../../jwt.evaluation.key');
+const jwtEvaluationKey = require('../../jwt.evaluation.key.js');
 
 const secret = process.env.JWT_SECRET || jwtEvaluationKey;
 const jwtConfig = {

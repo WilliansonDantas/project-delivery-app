@@ -15,7 +15,7 @@ const loginSchema = Joi.object({
 });
 
 const registerSchema = Joi.object({
-  name: Joi.string().required().max(12).messages({
+  name: Joi.string().required().min(12).messages({
     'string.empty': StringEmpty,
     'any.required': InvalidFields,
   }),
