@@ -88,7 +88,7 @@ function Register() {
         </button>
         {!valid && (
           <span
-            dataTestId="common_register__element-invalid_register"
+            data-testid="common_register__element-invalid_register"
           >
             Dados inválidos
 
@@ -96,7 +96,7 @@ function Register() {
         ) }
         {conflict && (
           <span
-            dataTestId="common_register__element-invalid_register"
+            data-testid="common_register__element-invalid_register"
           >
             Dados inválidos
 
