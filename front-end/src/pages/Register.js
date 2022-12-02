@@ -10,6 +10,7 @@ function Register() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [conflict, setConflict] = useState(false);
 
   const history = useHistory();
 
@@ -18,12 +19,16 @@ function Register() {
   }
 
   async function createUser() {
-    const result = await postData('/register', { name, email, password });
-    console.log(result);
-    if (result === 'Created') history.push('/customer/products');
+    try {
+      const result = await postData('/register', { name, email, password });
+      if (result === 'Created') return history.push('/customer/products');
+    } catch (error) {
+      setConflict(true);
+    }
   }
 
   useEffect(() => {
+    setConflict(false);
     const emailIsValid = emailValidation(email);
     if (name.length >= nameMinimumSize
       && emailIsValid && password.length >= passwordMinimumSize) {
@@ -40,6 +45,7 @@ function Register() {
         <label htmlFor="nome">
           Nome
           <input
+            value={ name }
             data-testid="common_register__input-name"
             type="text"
             id="nome"
@@ -51,6 +57,7 @@ function Register() {
         <label htmlFor="email">
           Email
           <input
+            value={ email }
             data-testid="common_register__input-email"
             type="text"
             id="email"
@@ -62,6 +69,7 @@ function Register() {
         <label htmlFor="password">
           Password
           <input
+            value={ password }
             data-testid="common_register__input-password"
             type="password"
             id="password"
@@ -79,7 +87,20 @@ function Register() {
           Cadastrar
         </button>
         {!valid && (
-          <span dataTestId="common_register__input-password">Dados inválidos</span>
+          <span
+            dataTestId="common_register__element-invalid_register"
+          >
+            Dados inválidos
+
+          </span>
+        ) }
+        {conflict && (
+          <span
+            dataTestId="common_register__element-invalid_register"
+          >
+            Dados inválidos
+
+          </span>
         ) }
       </form>
     </>

@@ -1,28 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function renderSpan() {
-  return (
-    <span
-      data-testid="common_login__element-invalid-email"
-    >
-      O e-mail deve ser um e-mail válido. Exemplo: exemplo@exemplo.com
-
-    </span>
-  );
-}
-
-function handleEmail({ value }, setValidEmail, setEmail) {
-  setValidEmail(false);
-  if (/\S+@\S+\.\S+/.test(value)) {
-    setValidEmail(true);
-    setEmail(value);
-  }
-}
-
 function EmailInput({ setEmail }) {
-  const [validEmail, setValidEmail] = useState(true);
-
   return (
     <label htmlFor="email">
       Email
@@ -32,9 +11,8 @@ function EmailInput({ setEmail }) {
         id="email"
         className="email"
         placeholder="exemplo@exemplo.com"
-        onChange={ (e) => handleEmail(e.target, setValidEmail, setEmail) }
+        onChange={ (e) => setEmail(e.target.value) }
       />
-      { !validEmail && renderSpan()}
     </label>
   );
 }
