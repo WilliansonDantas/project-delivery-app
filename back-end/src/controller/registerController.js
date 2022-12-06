@@ -1,5 +1,5 @@
 const md5 = require('md5');
-const registerUser = require('../service/registerService');
+const { registerUser } = require('../service/registerService');
 
 const register = async (req, res) => {
   const { body: { name, email, password } } = req;
