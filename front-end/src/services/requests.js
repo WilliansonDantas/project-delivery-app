@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: `http://localhost:${process.env.REACT_APP_API_PORT || '3001'}`,
   headers: {
     common: {
-      Authorization: localStorage.getItem('token'),
+      Authorization: JSON.parse(localStorage.getItem('token')),
     },
   },
 });

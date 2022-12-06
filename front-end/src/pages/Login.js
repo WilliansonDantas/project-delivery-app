@@ -14,16 +14,15 @@ function Login() {
 
   useEffect(() => {
     const userLoggedIn = JSON.parse(localStorage.getItem('userdata'));
-    if (userLoggedIn) history.push('/products');
+    if (userLoggedIn) history.push('/customer/products');
   });
 
   return (
     <>
       {/* adicionar um header */}
       <form className="user-login-area">
-        <EmailInput dataTestId="common_login__input-email" setEmail={ setEmail } />
+        <EmailInput setEmail={ setEmail } />
         <GenericInput
-          dataTestId="common_login__input-password"
           type="password"
           selector="password"
           fieldName="Senha"
@@ -33,12 +32,11 @@ function Login() {
         <SubmitBtn
           routeSuffix="login"
           sendObject={ obj }
-          navigation="/post"
           btnName="Entrar"
         />
       </form>
       <RegisterBtn
-        dataTestId="common_login__input-password"
+        data-testid="common_login__input-password"
         routeSuffix="register"
         navigation="/register"
         btnName="Register"
