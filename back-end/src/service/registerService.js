@@ -5,7 +5,7 @@ const registerUser = async (name, email, password) => {
   const checkedName = await User.findOne({ where: { name } });
   if ((checkedEmail && checkedEmail.email === email)
    || (checkedName && checkedName.name === name)) {
-    throw new Error('Usuário já cadastrado');
+    throw new Error('Conflict');
   }
 
   return User.create({ name, email, password, role: 'customer' });
