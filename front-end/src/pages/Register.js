@@ -98,7 +98,7 @@ function Register() {
           <span
             data-testid="common_register__element-invalid_register"
           >
-            Dados inválidos
+            Usuário já cadastrado
 
           </span>
         ) }
