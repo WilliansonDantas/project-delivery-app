@@ -57,7 +57,6 @@ describe('Testando a tela de Login',() => {
 
     expect(btnLogin).not.toBeDisabled()
   })
-
   it('Deve ser redirecionado para a tela de produtos ao passar email e senha válidos', async () => {
     api.post.mockImplementation(() => Promise.resolve({ data:{
       name: "Fulana Pereira",
