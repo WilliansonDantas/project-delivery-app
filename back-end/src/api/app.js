@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(loginRouter);
 app.use(registerRouter);
+app.use(express.static('public'));
 app.use(productsRouter);
 app.use(error);
 
