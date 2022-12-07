@@ -5,12 +5,11 @@ import Navbar from '../components/Navbar';
 import { getData } from '../services/requests';
 
 function Products() {
-  const [products, setProducts] = useState([]);
-  const { token } = JSON.parse(localStorage.getItem('userdata'));
-  localStorage.setItem('token', JSON.stringify(token));
+  const [products, setProducts] = useState([false]);
 
   const product = async () => {
     const data = await getData('/products');
+    console.log(data);
     setProducts(data);
   };
 
@@ -23,8 +22,7 @@ function Products() {
   return (
     <div>
       <Navbar> </Navbar>
-
-      {
+      {products && (
         products.map((p) => (
           <Card
             key={ uuidv4() }
@@ -33,8 +31,7 @@ function Products() {
             price={ p.price }
             img={ p.url_image }
           />
-        ))
-      }
+        )))}
     </div>
   );
 }
