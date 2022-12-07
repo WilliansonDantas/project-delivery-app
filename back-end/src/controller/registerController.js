@@ -1,5 +1,5 @@
 const md5 = require('md5');
-const registerUser = require('../service/registerService');
+const { registerUser } = require('../service/registerService');
 
 const register = async (req, res) => {
   const { body: { name, email, password } } = req;
@@ -7,7 +7,7 @@ const register = async (req, res) => {
     await registerUser(name, email, md5(password));
     return res.status(201).json('Created');
   } catch (error) {
-    return res.status(409).json('Conflict');
+    return res.status(409).json(error.message);
   }
 };
 
