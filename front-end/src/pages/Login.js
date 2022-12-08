@@ -14,10 +14,7 @@ function Login() {
 
   useEffect(() => {
     if (!localStorage.getItem('user')) {
-      localStorage.setItem(
-        'user',
-        JSON.stringify({ name: '', token: '' }),
-      );
+      return;
     }
     const { name } = JSON.parse(localStorage.getItem('user'));
     if (name.length > 1) history.push('/customer/products');

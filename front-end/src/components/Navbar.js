@@ -6,8 +6,8 @@ function Navbar() {
   const history = useHistory();
 
   const logout = () => {
-    localStorage.removeItem('user');
     history.push('/login');
+    localStorage.removeItem('user');
   };
 
   return (
