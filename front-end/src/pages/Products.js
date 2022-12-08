@@ -9,7 +9,6 @@ function Products() {
 
   useEffect(() => {
     const product = async () => {
-      console.log('product', JSON.parse(localStorage.getItem('userdata')));
       const data = await getData('/products');
       setProducts(data);
     };

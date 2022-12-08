@@ -1,9 +1,9 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 function Checkout() {
-  // const history = useHistory();
+// ATENÇÃO OS DADOS ABAIXO SÃO PARA EXEMPLO DE CRIAÇÃO DA TELA,
+// O FUNCIONAMENTO DEPENDE DA CONCLUSÃO DA TELA DE PRODUCTS
 
   const productExemple = [{
     descricao: 'coca-cola',
@@ -31,62 +31,67 @@ function Checkout() {
     <div>
       <Navbar />
       <table>
-        <tr>
-          <td>Item</td>
-          <td>Descrição</td>
-          <td>Quantidade</td>
-          <td>Valor Unitário</td>
-          <td>Sub-total</td>
-          <td>Remover Item</td>
-        </tr>
-        {productExemple && (
-          productExemple.map((el, index) => (
-            <tr key={ index }>
-              <td
-                data-testid={
-                  `customer_checkout__element-order-table-item-number-${index}`
-                }
-              >
-                {index + 1}
-              </td>
-              <td
-                data-testid={
-                  `customer_checkout__element-order-table-name-${index}`
-                }
-              >
-                {el.descricao}
-              </td>
-              <td
-                data-testid={
-                  `customer_checkout__element-order-table-quantity-${index}`
-                }
-              >
-                {el.quantidade}
-              </td>
-              <td
-                data-testid={
-                  `customer_checkout__element-order-table-unit-price-${index}`
-                }
-              >
-                {(el.valor).replace('.', ',')}
-              </td>
-              <td
-                data-testid={
-                  `customer_checkout__element-order-table-sub-total-${index}`
-                }
-              >
-                {`R$${((Number(el.quantidade)
-                * Number(el.valor)).toFixed(2)).toString().replace('.', ',')}`}
-              </td>
-              <button
-                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-                type="button"
-              >
-                Remover
+        <thead>
+          <tr>
+            <td>Item</td>
+            <td>Descrição</td>
+            <td>Quantidade</td>
+            <td>Valor Unitário</td>
+            <td>Sub-total</td>
+            <td>Remover Item</td>
+          </tr>
+        </thead>
+        <tbody>
 
-              </button>
-            </tr>
-          )))}
+          {productExemple && (
+            productExemple.map((el, index) => (
+              <tr key={ index }>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-item-number-${index}`
+                  }
+                >
+                  {index + 1}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-name-${index}`
+                  }
+                >
+                  {el.descricao}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-quantity-${index}`
+                  }
+                >
+                  {el.quantidade}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-unit-price-${index}`
+                  }
+                >
+                  {(el.valor).replace('.', ',')}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-sub-total-${index}`
+                  }
+                >
+                  {`R$${((Number(el.quantidade)
+                * Number(el.valor)).toFixed(2)).toString().replace('.', ',')}`}
+                </td>
+                <button
+                  data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                  type="button"
+                >
+                  Remover
+
+                </button>
+              </tr>
+            )))}
+        </tbody>
       </table>
       <span data-testid="customer_checkout__element-order-total-price">
         {`Total: R$ ${productsTotal()}`}

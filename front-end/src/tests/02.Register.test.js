@@ -3,8 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import App from '../App';
-import axios from 'axios';
-import api from '../services/requests'
+// import api from '../services/requests'
 
 jest.mock('../services/requests')
 
