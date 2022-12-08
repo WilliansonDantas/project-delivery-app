@@ -1,15 +1,14 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function Card({ id, name, price, img }) {
   const [quantity, setQuantity] = useState(0);
 
-  addProduct = () => {
-    // if (quantity >= 0) {
+  const addProduct = () => {
     setQuantity(quantity + 1);
-    // }
   };
 
-  rmProduct = () => {
+  const rmProduct = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
     }
@@ -39,6 +38,7 @@ function Card({ id, name, price, img }) {
         value={ quantity }
         type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }
+        onChange={ (e) => setQuantity(e.target.value) }
       />
       <button
         data-testid={ `customer_products__button-card-rm-item-${id}` }
