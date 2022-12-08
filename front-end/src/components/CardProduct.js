@@ -1,15 +1,26 @@
+// import React, { useContext, useState } from 'react';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+// import UserContext from '../contexts/UserContext';
 
 function Card({ id, name, price, img }) {
   const [quantity, setQuantity] = useState(0);
+  // const { carrinho, setCarrinho } = useContext(UserContext);
+  // console.log(carrinho);
+
+  // const arrayCar = () => {
+  //   const localCar = JSON.stringify(setCarrinho([...carrinho, { id, quantity, price }]));
+  //   localStorage.setItem('carrinho', localCar);
+  // };
 
   const addProduct = () => {
+    // arrayCar();
     setQuantity(quantity + 1);
   };
 
   const rmProduct = () => {
     if (quantity > 0) {
+      // arrayCar();
       setQuantity(quantity - 1);
     }
   };
