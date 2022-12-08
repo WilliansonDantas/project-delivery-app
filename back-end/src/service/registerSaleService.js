@@ -5,31 +5,40 @@ const getUserId = async (user) => {
   return id;
 };
 
-const getProductId = async (product) => {
-  const { id } = await Product.findOne({ where: { name: product } }); 
-  return id;
+const getProductId = async (name) => {
+  return { id } = await Product.findOne({ where: { name: name } });
 };
 
 const isertProductsSale = async (saleId, products) => {
   products.forEach(async (product) => {
-      const { id } = await getProductId(product.name);
-      await SalesProducts.create(saleId, id, product.quantity);
+    const { id } = await getProductId(product.name);
+    await SalesProducts.create({ productId:id, saleId, quantity: product.quantity});
   });
   return true;
 };
 
 const registerSale = async (sale) => {
-  const { user, seller, totalPrice, deliveryAddress, deliveryNumber, status, products } = sale;
-  const userId = await getUserId(user);
-  const sellerId = await getUserId(seller);
-  const { id } = await Sale.create(
-    userId, 
-    sellerId, 
+  const { 
+    user, 
+    seller, 
     totalPrice, 
     deliveryAddress, 
     deliveryNumber, 
+    status, 
+    products } = sale;
+  const userId = await getUserId(user);
+  if(!userId) throw new Error('usuario nao encontrado');
+  const sellerId = await getUserId(seller);
+  if(!sellerId) throw new Error('seller nao encontrado');
+  const { id } =  await Sale.create({
+    userId, 
+    sellerId, 
+    totalPrice, 
+    deliveryAddress,
+    deliveryNumber, 
     status,
-);
+  });
+  
   const finished = await isertProductsSale(id, products);
   if (!finished) {
     throw new Error('Ocorreu um erro');
