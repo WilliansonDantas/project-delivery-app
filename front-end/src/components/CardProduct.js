@@ -4,7 +4,9 @@ function Card({ id, name, price, img }) {
   return (
     <div>
       <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
-      <p data-testid={ `customer_products__element-card-price-${id}` }>{ price }</p>
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
+        { price.replace('.', ',') }
+      </p>
       <img
         width="100px"
         height="125px"
