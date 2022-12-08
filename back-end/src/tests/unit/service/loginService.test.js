@@ -3,7 +3,7 @@ const { describe } = require('mocha')
 const{ Model} = require('sequelize')
 const Sinon = require('sinon')
 const loginService = require('../../../service/loginService')
-
+const getUser = 
 
 describe('Testando Login Service',() => {
   it('Fazendo um Login com usuário válido',async () => {
@@ -21,7 +21,6 @@ describe('Testando Login Service',() => {
 
     expect(result).to.deep.equal(validUserData)
 
-    Sinon.restore()
   })
 
   it('Deve ser lançado uma exceção ao ser passado um email não cadastrado', async() => {
@@ -35,7 +34,6 @@ describe('Testando Login Service',() => {
       expect(error.message).to.be.equal(userNotFound)
     }
 
-    Sinon.restore()
   })
 
   it('Deve ser lançado uma exceção ao ser passado um password inválido', async() => {
@@ -57,6 +55,7 @@ describe('Testando Login Service',() => {
       expect(error.message).to.be.equal(invalidpassword)
     }
 
-    Sinon.restore()
   })
+  afterEach(Sinon.restore);
+
 })
