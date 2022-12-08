@@ -6,6 +6,8 @@ function Card({ id, name, price, img }) {
       <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
       <p data-testid={ `customer_products__element-card-price-${id}` }>{ price }</p>
       <img
+        width="100px"
+        height="125px"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ img }
         alt={ name }

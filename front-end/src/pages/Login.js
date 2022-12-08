@@ -13,8 +13,14 @@ function Login() {
   const history = useHistory();
 
   useEffect(() => {
-    const userLoggedIn = JSON.parse(localStorage.getItem('userdata'));
-    if (userLoggedIn) history.push('/customer/products');
+    if (!localStorage.getItem('user')) {
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ name: '', token: '' }),
+      );
+    }
+    const { name } = JSON.parse(localStorage.getItem('user'));
+    if (name.length > 1) history.push('/customer/products');
   });
 
   return (

@@ -12,7 +12,7 @@ function LoginBtn() {
   async function login(body) {
     try {
       const result = await postData('/login', body);
-      localStorage.setItem('userdata', JSON.stringify(result));
+      localStorage.setItem('user', JSON.stringify(result));
       history.push('/customer/products');
     } catch (error) {
       setUser(true);

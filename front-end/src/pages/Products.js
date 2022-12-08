@@ -5,15 +5,14 @@ import Navbar from '../components/Navbar';
 import { getData } from '../services/requests';
 
 function Products() {
-  const [products, setProducts] = useState([false]);
-
-  const product = async () => {
-    const data = await getData('/products');
-    console.log(data);
-    setProducts(data);
-  };
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    const product = async () => {
+      console.log('product', JSON.parse(localStorage.getItem('userdata')));
+      const data = await getData('/products');
+      setProducts(data);
+    };
     product();
   }, []);
 
@@ -21,8 +20,8 @@ function Products() {
 
   return (
     <div>
-      <Navbar> </Navbar>
-      {products && (
+      <Navbar />
+      {products.length > 1 && (
         products.map((p) => (
           <Card
             key={ uuidv4() }
@@ -32,6 +31,19 @@ function Products() {
             img={ p.url_image }
           />
         )))}
+      <button
+        data-testid="customer_products__button-cart"
+        type="button"
+        onClick={ () => {} }
+      >
+        Ver Carrinho
+      </button>
+      <span
+        data-testid="customer_products__checkout-bottom-value"
+      >
+        inserir valor somado do carrinho
+
+      </span>
     </div>
   );
 }

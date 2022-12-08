@@ -2,11 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 function Navbar() {
-  const userLoggedIn = JSON.parse(localStorage.getItem('userdata'));
+  const userLoggedIn = JSON.parse(localStorage.getItem('user'));
   const history = useHistory();
 
   const logout = () => {
-    localStorage.removeItem('userdata');
+    localStorage.removeItem('user');
     history.push('/login');
   };
 
