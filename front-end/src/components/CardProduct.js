@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 function Card({ id, name, price, img }) {
   const [quantity, setQuantity] = useState(0);
 
-  addProduct = () => {
+  const addProduct = () => {
     // if (quantity >= 0) {
     setQuantity(quantity + 1);
     // }
   };
 
-  rmProduct = () => {
+  const rmProduct = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
     }
