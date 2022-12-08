@@ -20,8 +20,10 @@ function Register() {
 
   async function createUser() {
     try {
-      const result = await postData('/register', { name, email, password });
-      if (result === 'Created') return history.push('/customer/products');
+      await postData('/register', { name, email, password });
+      const resultLogin = await postData('/login', { email, password });
+      localStorage.setItem('user', JSON.stringify(resultLogin));
+      return history.push('/customer/products');
     } catch (error) {
       setConflict(true);
     }
