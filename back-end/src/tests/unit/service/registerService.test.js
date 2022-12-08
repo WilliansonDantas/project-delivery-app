@@ -27,8 +27,6 @@ describe('Testando Register Service',() => {
   })
 
   it('Lançando uma exceção ao passar um usuário com email já existente', async () => {
-    const userAlreadyRegistered = 'Usuário já cadastrado'
-
     Sinon.stub(Model, 'findOne').resolves({email: 'emailexistenteo@deliveryapp.com' })
 
     Sinon.stub(Model, 'create').resolves()
@@ -37,14 +35,12 @@ describe('Testando Register Service',() => {
       await registerService.registerUser('novousuariovalido',
       'emailexistenteo@deliveryapp.com','fulana@123')
     } catch (error) {
-      expect(error.message).to.be.equal('Usuário já cadastrado')
+      expect(error.message).to.be.equal('Conflict')
     }
     Sinon.restore()
   })
 
   it('Lançando uma exceção ao passar um usuário com nome já existente', async () => {
-    const userAlreadyRegistered = 'Usuário já cadastrado'
-
     Sinon.stub(Model, 'findOne').resolves({name: 'novousuariovalido' })
 
     Sinon.stub(Model, 'create').resolves()
@@ -53,7 +49,7 @@ describe('Testando Register Service',() => {
       await registerService.registerUser('novousuariovalido',
       'emailexistenteo@deliveryapp.com','fulana@123')
     } catch (error) {
-      expect(error.message).to.be.equal('Usuário já cadastrado')
+      expect(error.message).to.be.equal('Conflict')
     }
     Sinon.restore()
   })
