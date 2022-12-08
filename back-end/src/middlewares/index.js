@@ -7,5 +7,5 @@ module.exports = {
   validateJWT,
   validateLogin, 
   validateRegister,
-  registerSaleValidation
+  registerSaleValidation,
 };

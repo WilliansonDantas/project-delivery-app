@@ -39,7 +39,7 @@ const registerSaleSchema = Joi.object({
   products: Joi.array().items(Joi.object({
     name: Joi.string().required(), quantity: Joi.number().required(),
   })),
-})
+});
 
 module.exports = {
   loginSchema,

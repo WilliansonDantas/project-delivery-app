@@ -1,13 +1,13 @@
 const { registerSaleSchema } = require('../joi/schemas');
 
 const registerSaleValidation = (req, res, next) => {
-  const { body: {user,
+  const { body: { user,
       seller,
       totalPrice,
       deliveryAddress,
       deliveryNumber, 
       status,
-      products  } } = req;
+      products } } = req;
 
     const { error } = registerSaleSchema.validate({ user,
       seller,

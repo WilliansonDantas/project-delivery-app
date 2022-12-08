@@ -4,6 +4,6 @@ const { validateJWT, registerSaleValidation } = require('../middlewares');
 
 const productsRouter = Router();
 
-productsRouter.get('/products', validateJWT, request);
+productsRouter.get('/products', validateJWT, registerSaleValidation, request);
 
 module.exports = productsRouter;
