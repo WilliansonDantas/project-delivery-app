@@ -3,7 +3,6 @@ const { describe } = require('mocha')
 const{ Model} = require('sequelize')
 const Sinon = require('sinon')
 const loginService = require('../../../service/loginService')
-const getUser = 
 
 describe('Testando Login Service',() => {
   it('Fazendo um Login com usuário válido',async () => {
