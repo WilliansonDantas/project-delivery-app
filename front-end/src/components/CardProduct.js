@@ -1,8 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import UserContext from '../contexts/UserContext';
 
 function Card({ id, name, price, img }) {
   const [quantity, setQuantity] = useState(0);
+  const { carrinho, setCarrinho } = useContext(UserContext);
+
+  const attCartGlobal = () => {
+    if (localStorage.getItem('allProducts')) {
+      const allProducts = JSON.parse(localStorage.getItem('allProducts'));
+      const total = allProducts.reduce((acc, el) => acc
+       + (Number(el.quantity) * Number(el.price)), 0);
+      setCarrinho((total.toFixed(2)).toString().replace('.', ','));
+    }
+  };
+
+  const productsVerification = (allProducts) => allProducts.reduce((acc, el) => {
+    const productData = {
+      name: el.name,
+      price: el.price,
+      quantity: el.quantity,
+    };
+    if (el.name !== name) acc.push(productData);
+    return acc;
+  }, []);
+
+  const allProductsControlSum = () => {
+    const allProducts = JSON.parse(localStorage.getItem('allProducts'));
+    const productsWithoutAtualProduct = productsVerification(allProducts);
+    const productWithAtualProduct = [...productsWithoutAtualProduct,
+      { name, price, quantity: quantity + 1 }];
+    localStorage.setItem('allProducts', JSON.stringify(productWithAtualProduct));
+  };
+
+  const allProductsControlSub = () => {
+    const allProducts = JSON.parse(localStorage.getItem('allProducts'));
+    const productsWithoutAtualProduct = productsVerification(allProducts);
+    const productWithAtualProduct = [...productsWithoutAtualProduct,
+      { name, price, quantity: quantity - 1 }];
+    if (quantity === 0) {
+      return localStorage.setItem(
+        'allProducts',
+        JSON.stringify(productsWithoutAtualProduct),
+      );
+    }
+    localStorage.setItem('allProducts', JSON.stringify(productWithAtualProduct));
+  };
+
+  const allProductsControlFromInput = (value) => {
+    const allProducts = JSON.parse(localStorage.getItem('allProducts'));
+    const productsWithoutAtualProduct = productsVerification(allProducts);
+    const productWithAtualProduct = [...productsWithoutAtualProduct,
+      { name, price, quantity: value }];
+    localStorage.setItem('allProducts', JSON.stringify(productWithAtualProduct));
+  };
 
   const addProduct = async () => {
     const { total } = JSON.parse(localStorage.getItem('totalprice'));
@@ -15,8 +66,8 @@ function Card({ id, name, price, img }) {
          + Number(total)).toFixed(2) }),
     );
 
-    const allProducts = JSON.parse(localStorage.getItem('totalprice'));
-    allProducts.push({ name, price, quantity });
+    allProductsControlSum();
+    attCartGlobal();
   };
 
   const rmProduct = () => {
@@ -27,10 +78,15 @@ function Card({ id, name, price, img }) {
         'totalprice',
         JSON.stringify({ total: (Number(total) - Number(price)).toFixed(2) }),
       );
+      attCartGlobal();
+      allProductsControlSub();
     }
+
+    attCartGlobal();
+    allProductsControlSub();
   };
 
-  const modifyQuantity = (value) => {
+  const modifyQuantityByInput = (value) => {
     // pego a quantidade existente > retiro do storage > adiciono o quanto estou passando no input
     if (quantity >= 0) {
       const { total } = JSON.parse(localStorage.getItem('totalprice'));
@@ -42,14 +98,27 @@ function Card({ id, name, price, img }) {
         JSON.stringify({ total: (Number(diferrenceFromStorage)
           + (Number(price)).toFixed(2) * Number(value)).toFixed(2) }),
       );
+      allProductsControlFromInput(value);
+      attCartGlobal();
       setQuantity(value);
     }
   };
 
   useEffect(() => {
     localStorage.setItem('totalprice', JSON.stringify({ total: 0 }));
-    localStorage.setItem('allProducts', JSON.stringify([]));
+    if (!localStorage.getItem('allProducts')) {
+      return localStorage.setItem('allProducts', JSON.stringify([]));
+    }
   }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem('allProducts')) {
+      const allProducts = JSON.parse(localStorage.getItem('allProducts'));
+      const thisProduct = allProducts.filter((el) => el.name === name);
+      if (thisProduct.length
+        && thisProduct[0].quantity) setQuantity(Number(thisProduct[0].quantity));
+    }
+  }, [carrinho]);
 
   return (
     <div>
@@ -75,7 +144,7 @@ function Card({ id, name, price, img }) {
         value={ quantity }
         type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }
-        onChange={ (e) => modifyQuantity(e.target.value) }
+        onChange={ (e) => modifyQuantityByInput(e.target.value) }
       />
       <button
         data-testid={ `customer_products__button-card-rm-item-${id}` }
