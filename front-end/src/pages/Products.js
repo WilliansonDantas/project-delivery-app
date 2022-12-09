@@ -13,7 +13,10 @@ function Products() {
 
   useEffect(() => {
     const product = async () => {
+<<<<<<< HEAD
       // console.log('product', JSON.parse(localStorage.getItem('userdata')));
+=======
+>>>>>>> 52c8b0a5ff4d2d634f046e879dbc84ac756a8af9
       const data = await getData('/products');
       setProducts(data);
     };

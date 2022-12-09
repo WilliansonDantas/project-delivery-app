@@ -29,7 +29,20 @@ const registerSchema = Joi.object({
   }),
 });
 
+const registerSaleSchema = Joi.object({
+  user: Joi.string().required(),
+  seller: Joi.string().required(),
+  totalPrice: Joi.number().required(),
+  deliveryAddress: Joi.string().required(),
+  deliveryNumber: Joi.number().required(),
+  status: Joi.string().required(),
+  products: Joi.array().items(Joi.object({
+    name: Joi.string().required(), quantity: Joi.number().required(),
+  })),
+});
+
 module.exports = {
   loginSchema,
   registerSchema,
+  registerSaleSchema,
 };
