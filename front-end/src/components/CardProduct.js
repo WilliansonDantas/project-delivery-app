@@ -1,29 +1,38 @@
-// import React, { useContext, useState } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import UserContext from '../contexts/UserContext';
 
 function Card({ id, name, price, img }) {
   const [quantity, setQuantity] = useState(0);
+  // const [productTotal, setProductTotal] = useState(0);
   // const { carrinho, setCarrinho } = useContext(UserContext);
-  // console.log(carrinho);
 
-  // const arrayCar = () => {
-  //   const localCar = JSON.stringify(setCarrinho([...carrinho, { id, quantity, price }]));
-  //   localStorage.setItem('carrinho', localCar);
-  // };
+  const addProduct = async () => {
+    const { total } = JSON.parse(localStorage.getItem('totalprice'));
 
-  const addProduct = () => {
-    // arrayCar();
     setQuantity(quantity + 1);
+
+    localStorage.setItem(
+      'totalprice',
+      JSON.stringify({ total: (Number(price)
+         + Number(total)).toFixed(2) }),
+    );
   };
 
   const rmProduct = () => {
     if (quantity > 0) {
-      // arrayCar();
       setQuantity(quantity - 1);
+      const { total } = JSON.parse(localStorage.getItem('totalprice'));
+      localStorage.setItem(
+        'totalprice',
+        JSON.stringify({ total: (Number(total) - Number(price)).toFixed(2) }),
+      );
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem('totalprice', JSON.stringify({ total: 0 }));
+  }, []);
 
   return (
     <div>

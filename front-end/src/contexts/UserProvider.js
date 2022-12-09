@@ -9,7 +9,7 @@ function UserProvider({ children }) {
   const [verifyPassword, setVerifyPassword] = useState();
   const [image, setImage] = useState('');
   const [verifiedPassword, setVerifiedPassword] = useState(true);
-  const [carrinho, setCarrinho] = useState([]);
+  const [carrinho, setCarrinho] = useState(0);
 
   const contextUser = useMemo(() => ({
     name,
