@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import UserContext from '../contexts/UserContext';
 
 function Card({ id, name, price, img }) {
   const [quantity, setQuantity] = useState(0);
-  // const [productTotal, setProductTotal] = useState(0);
-  // const { carrinho, setCarrinho } = useContext(UserContext);
 
   const addProduct = async () => {
     const { total } = JSON.parse(localStorage.getItem('totalprice'));
@@ -28,6 +25,28 @@ function Card({ id, name, price, img }) {
         JSON.stringify({ total: (Number(total) - Number(price)).toFixed(2) }),
       );
     }
+  };
+
+  const modifyQuantity = (value) => {
+    if (quantity >= value) {
+      const diferrence = Number(quantity) - Number(value);
+      const { total } = JSON.parse(localStorage.getItem('totalprice'));
+      localStorage.setItem(
+        'totalprice',
+        JSON.stringify({ total: (Number(total)
+          + (Number(price) * Number(diferrence))).toFixed(2) }),
+      );
+      setQuantity(value);
+    }
+    setQuantity(value);
+    // const diferrence = Number(value) + ;
+    //   const { total } = JSON.parse(localStorage.getItem('totalprice'));
+    //   localStorage.setItem(
+    //     'totalprice',
+    //     JSON.stringify({ total: (Number(total)
+    //       + (Number(price) * Number(diferrence))).toFixed(2) }),
+    //   );
+    //   setQuantity(value);
   };
 
   useEffect(() => {
@@ -58,7 +77,7 @@ function Card({ id, name, price, img }) {
         value={ quantity }
         type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }
-        onChange={ (e) => setQuantity(e.target.value) }
+        onChange={ (e) => modifyQuantity(e.target.value) }
       />
       <button
         data-testid={ `customer_products__button-card-rm-item-${id}` }
