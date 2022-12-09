@@ -7,18 +7,21 @@ function Card({ id, name, price, img }) {
   const addProduct = async () => {
     const { total } = JSON.parse(localStorage.getItem('totalprice'));
 
-    setQuantity(quantity + 1);
+    setQuantity(Number(quantity) + 1);
 
     localStorage.setItem(
       'totalprice',
       JSON.stringify({ total: (Number(price)
          + Number(total)).toFixed(2) }),
     );
+
+    const allProducts = JSON.parse(localStorage.getItem('totalprice'));
+    allProducts.push({ name, price, quantity });
   };
 
   const rmProduct = () => {
     if (quantity > 0) {
-      setQuantity(quantity - 1);
+      setQuantity(Number(quantity) - 1);
       const { total } = JSON.parse(localStorage.getItem('totalprice'));
       localStorage.setItem(
         'totalprice',
@@ -28,29 +31,24 @@ function Card({ id, name, price, img }) {
   };
 
   const modifyQuantity = (value) => {
-    if (quantity >= value) {
-      const diferrence = Number(quantity) - Number(value);
+    // pego a quantidade existente > retiro do storage > adiciono o quanto estou passando no input
+    if (quantity >= 0) {
       const { total } = JSON.parse(localStorage.getItem('totalprice'));
+      const diferrenceFromStorage = (Number(total)
+       - (Number(price)).toFixed(2) * Number(quantity));
+
       localStorage.setItem(
         'totalprice',
-        JSON.stringify({ total: (Number(total)
-          + (Number(price) * Number(diferrence))).toFixed(2) }),
+        JSON.stringify({ total: (Number(diferrenceFromStorage)
+          + (Number(price)).toFixed(2) * Number(value)).toFixed(2) }),
       );
       setQuantity(value);
     }
-    setQuantity(value);
-    // const diferrence = Number(value) + ;
-    //   const { total } = JSON.parse(localStorage.getItem('totalprice'));
-    //   localStorage.setItem(
-    //     'totalprice',
-    //     JSON.stringify({ total: (Number(total)
-    //       + (Number(price) * Number(diferrence))).toFixed(2) }),
-    //   );
-    //   setQuantity(value);
   };
 
   useEffect(() => {
     localStorage.setItem('totalprice', JSON.stringify({ total: 0 }));
+    localStorage.setItem('allProducts', JSON.stringify([]));
   }, []);
 
   return (
