@@ -1,7 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const error = require('../middlewares/error');
-const { loginRouter, registerRouter, productsRouter, saleRouter } = require('../routes');
+const { 
+  loginRouter,
+  registerRouter,
+  productsRouter,
+  saleRouter,
+  sellerRouter,
+   } = require('../routes');
 
 const app = express();
 app.use(cors());
@@ -11,6 +17,7 @@ app.use(registerRouter);
 app.use(express.static('public'));
 app.use(productsRouter);
 app.use(saleRouter);
+app.use(sellerRouter);
 app.use(error);
 
 module.exports = app;
