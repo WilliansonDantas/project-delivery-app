@@ -4,15 +4,16 @@ import UserContext from '../contexts/UserContext';
 
 function Card({ id, name, price, img }) {
   const [quantity, setQuantity] = useState(0);
-  const { carrinho, setCarrinho } = useContext(UserContext);
+  const { setCarrinho } = useContext(UserContext);
+
+  const totalPriceFromStorage = () => {
+    const { total } = JSON.parse(localStorage.getItem('totalprice'));
+    return (Number(total).toFixed(2)).toString().replace('.', ',');
+  };
 
   const attCartGlobal = () => {
-    if (localStorage.getItem('allProducts')) {
-      const allProducts = JSON.parse(localStorage.getItem('allProducts'));
-      const total = allProducts.reduce((acc, el) => acc
-       + (Number(el.quantity) * Number(el.price)), 0);
-      setCarrinho((total.toFixed(2)).toString().replace('.', ','));
-    }
+    const result = totalPriceFromStorage();
+    return setCarrinho(result);
   };
 
   const productsVerification = (allProducts) => allProducts.reduce((acc, el) => {
@@ -53,6 +54,7 @@ function Card({ id, name, price, img }) {
     const productWithAtualProduct = [...productsWithoutAtualProduct,
       { name, price, quantity: value }];
     localStorage.setItem('allProducts', JSON.stringify(productWithAtualProduct));
+    // setCarrinho(totalPriceFromStorage());
   };
 
   const addProduct = async () => {
@@ -65,9 +67,8 @@ function Card({ id, name, price, img }) {
       JSON.stringify({ total: (Number(price)
          + Number(total)).toFixed(2) }),
     );
-
-    allProductsControlSum();
     attCartGlobal();
+    allProductsControlSum();
   };
 
   const rmProduct = () => {
@@ -81,13 +82,11 @@ function Card({ id, name, price, img }) {
       attCartGlobal();
       allProductsControlSub();
     }
-
     attCartGlobal();
     allProductsControlSub();
   };
 
   const modifyQuantityByInput = (value) => {
-    // pego a quantidade existente > retiro do storage > adiciono o quanto estou passando no input
     if (quantity >= 0) {
       const { total } = JSON.parse(localStorage.getItem('totalprice'));
       const diferrenceFromStorage = (Number(total)
@@ -99,13 +98,17 @@ function Card({ id, name, price, img }) {
           + (Number(price)).toFixed(2) * Number(value)).toFixed(2) }),
       );
       allProductsControlFromInput(value);
+      if (value >= 0) setQuantity(value);
+
+      // O PROBLEMA DESSA TELA ESTÁ NA FUNÇÃO ABAIXO DENTRO DA OPÇÃO DE PREENCHIMENTO DO INPUT
       attCartGlobal();
-      setQuantity(value);
     }
   };
 
   useEffect(() => {
-    localStorage.setItem('totalprice', JSON.stringify({ total: 0 }));
+    if (!localStorage.getItem('totalprice')) {
+      localStorage.setItem('totalprice', JSON.stringify({ total: 0 }));
+    }
     if (!localStorage.getItem('allProducts')) {
       return localStorage.setItem('allProducts', JSON.stringify([]));
     }
@@ -118,7 +121,8 @@ function Card({ id, name, price, img }) {
       if (thisProduct.length
         && thisProduct[0].quantity) setQuantity(Number(thisProduct[0].quantity));
     }
-  }, [carrinho]);
+    attCartGlobal();
+  }, []);
 
   return (
     <div>
@@ -141,6 +145,7 @@ function Card({ id, name, price, img }) {
         +
       </button>
       <input
+        min={ 0 }
         value={ quantity }
         type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }

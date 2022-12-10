@@ -8,7 +8,7 @@ import UserContext from '../contexts/UserContext';
 
 function Products() {
   const [products, setProducts] = useState([]);
-  const { carrinho, setCarrinho } = useContext(UserContext);
+  const { carrinho } = useContext(UserContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -19,15 +19,6 @@ function Products() {
     product();
   }, []);
   // https://devtrium.com/posts/async-functions-useeffect
-
-  useEffect(() => {
-    if (localStorage.getItem('allProducts')) {
-      const allProducts = JSON.parse(localStorage.getItem('allProducts'));
-      const total = allProducts.reduce((acc, el) => acc
-       + (Number(el.quantity) * Number(el.price)), 0);
-      setCarrinho((total.toFixed(2)).toString().replace('.', ','));
-    }
-  }, []);
 
   const carStorage = () => {
     history.push('/customer/checkout');
