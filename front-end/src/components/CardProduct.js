@@ -105,6 +105,7 @@ function Card({ id, name, price, img }) {
     }
   };
 
+  // INICIALIZA O STORAGE CASO ESTEJA VAZIO
   useEffect(() => {
     if (!localStorage.getItem('totalprice')) {
       localStorage.setItem('totalprice', JSON.stringify({ total: 0 }));
@@ -114,6 +115,7 @@ function Card({ id, name, price, img }) {
     }
   }, []);
 
+  // CARREGA OS DADOS DO PRODUTO PARA O ESTADO DELE, CASO ELE JÁ EXISTA NO CARRINHO
   useEffect(() => {
     if (localStorage.getItem('allProducts')) {
       const allProducts = JSON.parse(localStorage.getItem('allProducts'));
