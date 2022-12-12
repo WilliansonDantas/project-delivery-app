@@ -9,6 +9,7 @@ function UserProvider({ children }) {
   const [verifyPassword, setVerifyPassword] = useState();
   const [image, setImage] = useState('');
   const [verifiedPassword, setVerifiedPassword] = useState(true);
+  const [carrinho, setCarrinho] = useState(0);
 
   const contextUser = useMemo(() => ({
     name,
@@ -23,7 +24,9 @@ function UserProvider({ children }) {
     setImage,
     verifiedPassword,
     setVerifiedPassword,
-  }), [name, email, password, verifyPassword, image, verifiedPassword]);
+    carrinho,
+    setCarrinho,
+  }), [name, email, password, verifyPassword, image, verifiedPassword, carrinho]);
 
   return (
     <UserContext.Provider value={ contextUser }>
