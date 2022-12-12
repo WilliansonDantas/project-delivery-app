@@ -56,18 +56,18 @@ function Products() {
           />
         )))}
       <button
+        disabled={ total === '0,00' }
         data-testid="customer_products__button-cart"
         type="button"
         onClick={ () => carStorage() }
       >
-        Ver Carrinho
-      </button>
-      <span
-        data-testid="customer_products__checkout-bottom-value"
-      >
-        { total }
+        <span
+          data-testid="customer_products__checkout-bottom-value"
+        >
+          {`Ver Carrinho R$ ${total}`}
 
-      </span>
+        </span>
+      </button>
     </div>
   );
 }
