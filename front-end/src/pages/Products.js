@@ -28,8 +28,10 @@ function Products() {
       totalPrice += item.price * item.quantityItem;
     });
     setTotal((totalPrice).toFixed(2).replace('.', ','));
-    localStorage.setItem('totalPrice', JSON
-      .stringify((totalPrice).toFixed(2).replace('.', ',')));
+    localStorage.setItem(
+      'totalprice',
+      JSON.stringify({ total: totalPrice.toFixed(2).replace('.', ',') }),
+    );
   }, [productsClick]);
 
   const carStorage = () => {

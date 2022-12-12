@@ -16,6 +16,7 @@ const registerSaleValidation = (req, res, next) => {
       deliveryNumber, 
       status,
       products });
+      console.log(error);
     if (error) return res.status(400).json({ message: error.message });
    
     next();
