@@ -9,7 +9,7 @@ function Checkout() {
   const [sellers, setSellers] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState();
   const [endereco, setEndereco] = useState('');
-  const [numeroTel, setNumeroTel] = useState();
+  const [numero, setNumero] = useState();
   const [cartTotal, setCartTotal] = useState(0);
   const { carrinho } = useContext(UserContext);
 
@@ -27,7 +27,7 @@ function Checkout() {
       seller: selectedSeller,
       totalPrice: Number(cartTotal.replace(',', '.')),
       deliveryAddress: endereco,
-      deliveryNumber: Number(numeroTel),
+      deliveryNumber: numero,
       status: 'Pendente',
       products: productsFormat,
     });
@@ -61,7 +61,11 @@ function Checkout() {
   // Trará os vendedores do banco de dados
   const getSellers = async () => {
     const sellersFromDB = await getData('/sellers');
-    if (sellersFromDB) setSellers(sellersFromDB);
+    if (sellersFromDB) {
+      setSellers(sellersFromDB);
+      console.log(sellersFromDB);
+      setSelectedSeller(sellersFromDB[0].name);
+    }
   };
 
   useEffect(() => {
@@ -177,9 +181,9 @@ function Checkout() {
       <label htmlFor="numero">
         <input
           type="text"
-          value={ numeroTel }
+          value={ numero }
           data-testid="customer_checkout__input-address-number"
-          onChange={ (e) => setNumeroTel(e.target.value) }
+          onChange={ (e) => setNumero(e.target.value) }
           id="numero"
         />
       </label>
