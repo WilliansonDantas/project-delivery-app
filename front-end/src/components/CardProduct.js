@@ -1,128 +1,77 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import UserContext from '../contexts/UserContext';
 
-function Card({ id, name, price, img }) {
+function Card({
+  id,
+  name,
+  price,
+  img,
+  productsClick,
+  setProductsClick,
+}) {
   const [quantity, setQuantity] = useState(0);
-  const { setCarrinho } = useContext(UserContext);
 
-  const totalPriceFromStorage = () => {
-    const { total } = JSON.parse(localStorage.getItem('totalprice'));
-    return (Number(total).toFixed(2)).toString().replace('.', ',');
-  };
-
-  const attCartGlobal = () => {
-    const result = totalPriceFromStorage();
-    return setCarrinho(result);
-  };
-
-  const productsVerification = (allProducts) => allProducts.reduce((acc, el) => {
-    const productData = {
-      name: el.name,
-      price: el.price,
-      quantity: el.quantity,
-    };
-    if (el.name !== name) acc.push(productData);
-    return acc;
-  }, []);
-
-  const allProductsControlSum = () => {
-    const allProducts = JSON.parse(localStorage.getItem('allProducts'));
-    const productsWithoutAtualProduct = productsVerification(allProducts);
-    const productWithAtualProduct = [...productsWithoutAtualProduct,
-      { name, price, quantity: quantity + 1 }];
-    localStorage.setItem('allProducts', JSON.stringify(productWithAtualProduct));
-  };
-
-  const allProductsControlSub = () => {
-    const allProducts = JSON.parse(localStorage.getItem('allProducts'));
-    const productsWithoutAtualProduct = productsVerification(allProducts);
-    const productWithAtualProduct = [...productsWithoutAtualProduct,
-      { name, price, quantity: quantity - 1 }];
-    if (quantity === 0) {
-      return localStorage.setItem(
-        'allProducts',
-        JSON.stringify(productsWithoutAtualProduct),
-      );
-    }
-    localStorage.setItem('allProducts', JSON.stringify(productWithAtualProduct));
-  };
-
-  const allProductsControlFromInput = (value) => {
-    const allProducts = JSON.parse(localStorage.getItem('allProducts'));
-    const productsWithoutAtualProduct = productsVerification(allProducts);
-    const productWithAtualProduct = [...productsWithoutAtualProduct,
-      { name, price, quantity: value }];
-    localStorage.setItem('allProducts', JSON.stringify(productWithAtualProduct));
-    // setCarrinho(totalPriceFromStorage());
-  };
+  useEffect(() => {
+    productsClick.forEach((element) => {
+      if (element.id === id) {
+        setQuantity(element.quantityItem);
+      }
+    });
+  }, [productsClick]);
 
   const addProduct = async () => {
-    const { total } = JSON.parse(localStorage.getItem('totalprice'));
-
-    setQuantity(Number(quantity) + 1);
-
-    localStorage.setItem(
-      'totalprice',
-      JSON.stringify({ total: (Number(price)
-         + Number(total)).toFixed(2) }),
-    );
-    attCartGlobal();
-    allProductsControlSum();
+    if (productsClick.some((product) => product.id === id)) {
+      const itemSum = productsClick.map((el) => {
+        if (el.id === id) {
+          const newAddObj = {
+            ...el, quantityItem: el.quantityItem += 1,
+          };
+          return newAddObj;
+        }
+        return el;
+      });
+      setProductsClick(itemSum);
+    } else {
+      setProductsClick([...productsClick, { id, name, price, quantityItem: 1 }]);
+    }
   };
 
   const rmProduct = () => {
-    if (quantity > 0) {
-      setQuantity(Number(quantity) - 1);
-      const { total } = JSON.parse(localStorage.getItem('totalprice'));
-      localStorage.setItem(
-        'totalprice',
-        JSON.stringify({ total: (Number(total) - Number(price)).toFixed(2) }),
-      );
-      attCartGlobal();
-      allProductsControlSub();
+    if (productsClick.some((product) => product.id === id && product.quantityItem > 0)) {
+      const itemSub = productsClick.map((el) => {
+        if (el.id === id) {
+          const newAddObj = {
+            ...el, quantityItem: el.quantityItem -= 1,
+          };
+          return newAddObj;
+        }
+        return el;
+      });
+      setProductsClick(itemSub);
     }
-    attCartGlobal();
-    allProductsControlSub();
   };
 
   const modifyQuantityByInput = (value) => {
-    if (quantity >= 0) {
-      const { total } = JSON.parse(localStorage.getItem('totalprice'));
-      const diferrenceFromStorage = (Number(total)
-       - (Number(price)).toFixed(2) * Number(quantity));
-
-      localStorage.setItem(
-        'totalprice',
-        JSON.stringify({ total: (Number(diferrenceFromStorage)
-          + (Number(price)).toFixed(2) * Number(value)).toFixed(2) }),
-      );
-      allProductsControlFromInput(value);
+    if (productsClick.some((product) => product.id === id)) {
+      const valueManual = productsClick.map((el) => {
+        if (el.id === id) {
+          const newAddObj = {
+            ...el, quantityItem: Number(value),
+          };
+          return newAddObj;
+        }
+        return el;
+      });
+      setProductsClick(valueManual);
       if (value >= 0) setQuantity(value);
-
-      // O PROBLEMA DESSA TELA ESTÁ NA FUNÇÃO ABAIXO DENTRO DA OPÇÃO DE PREENCHIMENTO DO INPUT
-      attCartGlobal();
+    } else {
+      setProductsClick([...productsClick, { id,
+        name,
+        price,
+        quantityItem: Number(value) }]);
+      if (value >= 0) setQuantity(value);
     }
   };
-
-  useEffect(() => {
-    if (!localStorage.getItem('totalprice')) {
-      localStorage.setItem('totalprice', JSON.stringify({ total: 0 }));
-    }
-    if (!localStorage.getItem('allProducts')) {
-      return localStorage.setItem('allProducts', JSON.stringify([]));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem('allProducts')) {
-      const allProducts = JSON.parse(localStorage.getItem('allProducts'));
-      const thisProduct = allProducts.filter((el) => el.name === name);
-      if (thisProduct.length
-        && thisProduct[0].quantity) setQuantity(Number(thisProduct[0].quantity));
-    }
-    attCartGlobal();
-  }, []);
 
   return (
     <div>
@@ -167,6 +116,15 @@ Card.propTypes = {
   id: PropTypes.number.isRequired,
   price: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
+  productsClick: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      price: PropTypes.string,
+      quantityItem: PropTypes.number,
+    }),
+  ).isRequired,
+  setProductsClick: PropTypes.func.isRequired,
 };
 
 export default Card;

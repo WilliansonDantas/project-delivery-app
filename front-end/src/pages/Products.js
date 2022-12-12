@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
-import { useContext, useEffect, useState } from 'react';
+// import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '../components/CardProduct';
 import Navbar from '../components/Navbar';
@@ -8,8 +8,10 @@ import UserContext from '../contexts/UserContext';
 
 function Products() {
   const [products, setProducts] = useState([]);
-  const { carrinho } = useContext(UserContext);
+  const [productsClick, setProductsClick] = useState([]);
+  const [total, setTotal] = useState(0);
   const history = useHistory();
+  const { setCarrinho } = useContext(UserContext);
 
   useEffect(() => {
     const product = async () => {
@@ -20,7 +22,18 @@ function Products() {
   }, []);
   // https://devtrium.com/posts/async-functions-useeffect
 
+  useEffect(() => {
+    let totalPrice = 0;
+    productsClick.forEach((item) => {
+      totalPrice += item.price * item.quantityItem;
+    });
+    setTotal((totalPrice).toFixed(2).replace('.', ','));
+    localStorage.setItem('totalPrice', JSON
+      .stringify((totalPrice).toFixed(2).replace('.', ',')));
+  }, [productsClick]);
+
   const carStorage = () => {
+    setCarrinho(productsClick);
     history.push('/customer/checkout');
   };
 
@@ -28,13 +41,18 @@ function Products() {
     <div>
       <Navbar />
       {products.length > 1 && (
-        products.map((p) => (
+        products.map((p, index) => (
           <Card
-            key={ uuidv4() }
+            // key={ uuidv4() }
+            key={ index }
             id={ p.id }
             name={ p.name }
             price={ p.price }
             img={ p.url_image }
+            setProductsClick={ setProductsClick }
+            productsClick={ productsClick }
+            total={ total }
+            setTotal={ setTotal }
           />
         )))}
       <button
@@ -47,7 +65,7 @@ function Products() {
       <span
         data-testid="customer_products__checkout-bottom-value"
       >
-        { carrinho }
+        { total }
 
       </span>
     </div>
