@@ -73,6 +73,13 @@ function Card({
     }
   };
 
+  // INICIALIZA O STORAGE CASO ESTEJA VAZIO
+  useEffect(() => {
+    if (!localStorage.getItem('allProducts')) {
+      return localStorage.setItem('allProducts', JSON.stringify([]));
+    }
+  }, []);
+
   return (
     <div>
       <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
