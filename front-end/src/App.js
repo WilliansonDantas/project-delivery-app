@@ -32,7 +32,7 @@ function App() {
         </RegisterProvider>
       </UserProvider>
     </Switch>
-   );
+  );
 }
 
 export default App;
