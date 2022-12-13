@@ -48,7 +48,6 @@ const findProductData = async (id) => {
     quantity: el['products.SalesProducts.quantity'] });
    return acc;
   }, []);
-  console.log(productsDetails);
 
   return productsDetails;
 };
