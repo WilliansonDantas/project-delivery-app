@@ -4,6 +4,6 @@ const { validateJWT, validateRegister } = require('../middlewares');
 
 const registerAdmRouter = Router();
 
-registerAdmRouter.post('/adm/register', validateRegister, registerAdm);
+registerAdmRouter.post('/adm/register', validateJWT, validateRegister, registerAdm);
 
 module.exports = registerAdmRouter;
