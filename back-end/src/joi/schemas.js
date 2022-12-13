@@ -27,6 +27,7 @@ const registerSchema = Joi.object({
     'string.empty': StringEmpty,
     'any.required': InvalidFields,
   }),
+  role: Joi.string().valid('customer', 'seller', 'administrator'),
 });
 
 const registerSaleSchema = Joi.object({
