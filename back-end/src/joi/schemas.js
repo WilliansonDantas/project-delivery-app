@@ -27,6 +27,7 @@ const registerSchema = Joi.object({
     'string.empty': StringEmpty,
     'any.required': InvalidFields,
   }),
+  role: Joi.string().valid('customer', 'seller', 'administrator'),
 });
 
 const registerSaleSchema = Joi.object({
@@ -34,7 +35,7 @@ const registerSaleSchema = Joi.object({
   seller: Joi.string().required(),
   totalPrice: Joi.number().required(),
   deliveryAddress: Joi.string().required(),
-  deliveryNumber: Joi.number().required(),
+  deliveryNumber: Joi.string().required(),
   status: Joi.string().required(),
   products: Joi.array().items(Joi.object({
     name: Joi.string().required(), quantity: Joi.number().required(),
