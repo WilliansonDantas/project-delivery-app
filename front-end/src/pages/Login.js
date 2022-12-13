@@ -16,8 +16,9 @@ function Login() {
     if (!localStorage.getItem('user')) {
       return;
     }
-    const { name } = JSON.parse(localStorage.getItem('user'));
-    if (name.length > 1) history.push('/customer/products');
+    const { role } = JSON.parse(localStorage.getItem('user'));
+    if (role === 'customer') history.push('/customer/products');
+    if (role === 'administrator') history.push('/admin/manage');
   });
 
   return (
