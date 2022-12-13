@@ -37,4 +37,42 @@ const registerSale = async (sale) => {
   return id;
 }; 
 
-module.exports = { registerSale };
+const findProductData = async (id) => {
+  const products = await Sale.findAll({ where: { id },
+    raw: true, 
+     include: [{ model: Product, required: true, as: 'products' }] });
+
+  const productsDetails = products.reduce((acc, el) => {
+    acc.push({ name: el['products.name'], 
+    price: el['products.price'],
+    quantity: el['products.SalesProducts.quantity'] });
+   return acc;
+  }, []);
+  console.log(productsDetails);
+
+  return productsDetails;
+};
+
+const requestSale = async (id) => {
+  // detalhes pedido
+  const orderData = await Sale.findOne({ where: { id }, raw: true });
+  const costumerData = await User.findOne({ where: { id: orderData.userId }, raw: true });
+  const sellerData = await User.findOne({ where: { id: orderData.sellerId }, raw: true });
+  const productsDetails = await findProductData(id);
+  
+  const orderFullDatails = {
+    totalPrice: orderData.totalPrice,
+    deliveryAddress: orderData.deliveryAddress,
+    deliveryNumber: orderData.deliveryNumber,
+    saleDate: orderData.saleDate,
+    status: orderData.status,
+    costumerId: costumerData.id,
+    costumerName: costumerData.name,
+    sellerId: sellerData.id,
+    sellerName: sellerData.name,
+    products: productsDetails,
+  };
+  return orderFullDatails;
+};
+
+module.exports = { registerSale, requestSale };
