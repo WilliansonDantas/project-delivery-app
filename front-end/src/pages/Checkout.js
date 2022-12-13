@@ -63,7 +63,6 @@ function Checkout() {
     const sellersFromDB = await getData('/sellers');
     if (sellersFromDB) {
       setSellers(sellersFromDB);
-      console.log(sellersFromDB);
       setSelectedSeller(sellersFromDB[0].name);
     }
   };
