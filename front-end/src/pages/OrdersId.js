@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 
 function Orders() {
-  const [productsDetails, setProductsDetails] = useState([]);
+  // const [productsDetails, setProductsDetails] = useState([]);
 
   useEffect(() => {
     const orderIdDetail = async () => {
@@ -15,7 +15,7 @@ function Orders() {
   return (
     <div>
       <Navbar />
-      <h1>Detalhe do Pedido</h1>
+      {/* <h1>Detalhe do Pedido</h1>
       <span>P. vendedora Responsável</span>
       <select
         onClick={ (e) => setSelectedSeller(e.target.value) }
@@ -110,7 +110,7 @@ function Orders() {
       </table>
       <span data-testid="customer_order_details__element-order-total-price">
         {cartTotal}
-      </span>
+      </span> */}
     </div>
   );
 }

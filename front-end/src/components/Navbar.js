@@ -13,14 +13,35 @@ function Navbar() {
   return (
     <nav>
       <ul>
-        <li data-testid="customer_products__element-navbar-link-products">
-          <a href="/customer/products">Home</a>
+        <li>
+          <button
+            data-testid="customer_products__element-navbar-link-products"
+            type="button"
+            onClick={ () => history.push('/customer/products') }
+          >
+            Home
+
+          </button>
         </li>
-        <li data-testid="customer_products__element-navbar-link-orders">
-          <a href="/customer/orders">Meus Pedidos</a>
+        <li>
+          <button
+            data-testid="customer_products__element-navbar-link-orders"
+            type="button"
+            onClick={ () => history.push('/customer/orders') }
+          >
+            Meus Pedidos
+
+          </button>
         </li>
-        <li data-testid="customer_products__element-navbar-user-full-name">
-          <a href="/customer/products">{ userLoggedIn.name }</a>
+        <li>
+          <button
+            data-testid="customer_products__element-navbar-user-full-name"
+            type="button"
+            onClick={ () => history.push('/customer/orders') }
+          >
+            { userLoggedIn.name }
+
+          </button>
         </li>
         <li>
           <button
