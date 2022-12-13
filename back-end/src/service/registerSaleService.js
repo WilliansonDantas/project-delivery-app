@@ -61,6 +61,7 @@ const requestSale = async (id) => {
   const productsDetails = await findProductData(id);
   
   const orderFullDatails = {
+    orderId: id,
     totalPrice: orderData.totalPrice,
     deliveryAddress: orderData.deliveryAddress,
     deliveryNumber: orderData.deliveryNumber,
