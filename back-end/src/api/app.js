@@ -19,7 +19,7 @@ app.use(express.static('public'));
 app.use(productsRouter);
 app.use(saleRouter);
 app.use(sellerRouter);
-app.use(orderDetails)
+app.use(orderDetails);
 app.use(error);
 
 module.exports = app;

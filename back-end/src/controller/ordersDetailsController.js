@@ -1,8 +1,9 @@
-const { orders } = require('../service/ordersDetails')
+const { orders, getUserId } = require('../service/ordersDetails');
 
 const orderByUser = async (req, res) => {
-  const { id } = req.params
+  const { email } = req.params;
   try {
+    const id = await getUserId(email);
     const response = await orders(id);
     return res.status(201).json(response);
   } catch (error) {
