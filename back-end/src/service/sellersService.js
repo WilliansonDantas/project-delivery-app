@@ -1,5 +1,10 @@
-const { User } = require('../database/models');
+const { User, Sale } = require('../database/models');
 
 const getAllSellers = async () => User.findAll({ where: { role: 'seller' } });
 
-module.exports = { getAllSellers };
+const getSales = async (sellerId) => {
+  const sales = await Sale.findAll({ where: { sellerId } });
+  return sales;
+};
+
+module.exports = { getAllSellers, getSales };
