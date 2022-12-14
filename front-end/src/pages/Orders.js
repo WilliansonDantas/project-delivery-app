@@ -9,13 +9,12 @@ function Orders() {
   const findUserOrders = async () => {
     const { email } = JSON.parse(localStorage.getItem('user'));
     const ordersData = await getData(`/order/details/${email}`);
-    return ordersData;
+    return setOrders(ordersData);
   };
 
   useEffect(() => {
     const ordersPlaced = async () => {
-      const data = await findUserOrders();
-      setOrders(data);
+      await findUserOrders();
     };
     ordersPlaced();
   }, []);
@@ -23,7 +22,7 @@ function Orders() {
   return (
     <div>
       <Navbar />
-      {orders.length > 1 && (
+      {orders && orders.length >= 1 && (
         orders.map((order) => (
           <CardOrder
             key={ String(order.id) }

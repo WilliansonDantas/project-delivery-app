@@ -41,8 +41,6 @@ function OrdersId() {
     setStatus('Entregue');
   };
 
-  const dateFix = date.slice(0, caracteres).split('-').reverse().join('/');
-
   return (
     <div>
       <Navbar />
@@ -60,7 +58,7 @@ function OrdersId() {
       <p
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        { dateFix }
+        { date ? date.slice(0, caracteres).split('-').reverse().join('/') : date }
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-delivery-status"
