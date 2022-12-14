@@ -9,7 +9,7 @@ import { seller } from './mocks/seller.mock';
 
 jest.mock('../services/requests')
 
-describe.skip('Testando a tela de Products',() => {
+describe('Testando a tela de Products',() => {
 
   afterEach(() => jest.clearAllMocks())
 
