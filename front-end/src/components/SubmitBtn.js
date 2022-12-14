@@ -15,6 +15,7 @@ function LoginBtn() {
       localStorage.setItem('user', JSON.stringify(result));
       if (result.role === 'customer') history.push('/customer/products');
       if (result.role === 'administrator') history.push('/admin/manage');
+      if (result.role === 'seller') history.push('/seller/orders');
     } catch (error) {
       setUser(true);
     }
