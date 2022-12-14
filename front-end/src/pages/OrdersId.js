@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getData } from '../services/requests';
 import Navbar from '../components/Navbar';
 
-function Orders() {
+function OrdersId() {
   const [productsDetails, setProductsDetails] = useState([]);
+  const [total, setTotal] = useState(0);
+  const { id } = useParams();
 
   useEffect(() => {
     const orderIdDetail = async () => {
-      const data = await getData('/sale/orders/:id');
+      const data = await getData(`/sale/${id}`);
+      const { totalPrice } = await data;
+      setTotal(totalPrice);
+      console.log(data);
       setProductsDetails(data);
     };
     orderIdDetail();
@@ -16,44 +23,6 @@ function Orders() {
     <div>
       <Navbar />
       <h1>Detalhe do Pedido</h1>
-      <span>P. vendedora Responsável</span>
-      <select
-        onClick={ (e) => setSelectedSeller(e.target.value) }
-        value={ selectedSeller }
-        data-testid="customer_checkout__select-seller"
-        name="sellers"
-      >
-        {sellers.length > 0 && (sellers.map((el, index) => (
-          <option key={ index }>{el.name}</option>
-        )))}
-      </select>
-      <span>Endereço</span>
-      <label htmlFor="endereco">
-        <input
-          type="text"
-          value={ endereco }
-          data-testid="customer_checkout__input-address"
-          onChange={ (e) => setEndereco(e.target.value) }
-          id="endereco"
-        />
-      </label>
-      <span>Número</span>
-      <label htmlFor="numero">
-        <input
-          type="text"
-          value={ numero }
-          data-testid="customer_checkout__input-address-number"
-          onChange={ (e) => setNumero(e.target.value) }
-          id="numero"
-        />
-      </label>
-      <button
-        onClick={ () => requestOrder() }
-        data-testid="customer_checkout__button-submit-order"
-        type="button"
-      >
-        Finalizar Pedido
-      </button>
       <table>
         <thead>
           <tr>
@@ -66,7 +35,7 @@ function Orders() {
         </thead>
         <tbody>
           {productsDetails && (
-            productsFromUserCart.map((el, index) => (
+            productsDetails.map((el, index) => (
               <tr key={ index }>
                 <td
                   data-testid={
@@ -80,39 +49,40 @@ function Orders() {
                     `customer_order_details__element-order-table-name-${index}`
                   }
                 >
-                  {el.name}
+                  {el.products[index].name}
                 </td>
                 <td
                   data-testid={
                     `customer_order_details__element-order-table-quantity-${index}`
                   }
                 >
-                  {el.quantityItem}
+                  {el.products[index].quantity}
                 </td>
                 <td
                   data-testid={
                     `customer_order_details__element-order-table-unit-price-${index}`
                   }
                 >
-                  {`R$ ${(el.price).toString().replace('.', ',')}`}
+                  {`R$ ${(el.products[index].price).toString().replace('.', ',')}`}
                 </td>
                 <td
                   data-testid={
                     `customer_order_details__element-order-table-sub-total-${index}`
                   }
                 >
-                  {`R$ ${((Number(el.quantityItem)
-                * Number(el.price)).toFixed(2)).toString().replace('.', ',')}`}
+                  {`R$ ${((Number(el.products[index].quantity)
+                * Number(el.products[index].price))
+                    .toFixed(2)).toString().replace('.', ',')}`}
                 </td>
               </tr>
             )))}
         </tbody>
       </table>
       <span data-testid="customer_order_details__element-order-total-price">
-        {cartTotal}
+        {`Total ${total}`}
       </span>
     </div>
   );
 }
 
-export default Orders;
+export default OrdersId;
