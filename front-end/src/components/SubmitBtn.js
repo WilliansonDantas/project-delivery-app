@@ -13,7 +13,8 @@ function LoginBtn() {
     try {
       const result = await postData('/login', body);
       localStorage.setItem('user', JSON.stringify(result));
-      history.push('/customer/products');
+      if (result.role === 'customer') history.push('/customer/products');
+      if (result.role === 'administrator') history.push('/admin/manage');
     } catch (error) {
       setUser(true);
     }

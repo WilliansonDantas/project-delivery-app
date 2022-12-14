@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
-// import { v4 as uuidv4 } from 'uuid';
 import CardOrder from '../components/CardOrder';
 import Navbar from '../components/Navbar';
+import { getData } from '../services/requests';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
 
+  const findUserOrders = async () => {
+    const { email } = JSON.parse(localStorage.getItem('user'));
+    const ordersData = await getData(`/order/details/${email}`);
+    return ordersData;
+  };
+
   useEffect(() => {
     const ordersPlaced = async () => {
-      const data = await getData('/sales/orders');
+      const data = await findUserOrders();
       setOrders(data);
     };
     ordersPlaced();
@@ -20,13 +26,12 @@ function Orders() {
       {orders.length > 1 && (
         orders.map((order) => (
           <CardOrder
-            // key={ uuidv4() }
-            key={ order.id }
-            id={ order.id }
-            order={ order.order }
+            key={ String(order.id) }
+            id={ String(order.id) }
+            order={ String(order.id) }
             status={ order.status }
-            date={ order.date }
-            price={ order.price }
+            date={ order.saleDate }
+            price={ order.totalPrice }
           />
         )))}
     </div>
