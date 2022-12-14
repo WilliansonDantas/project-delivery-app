@@ -25,7 +25,6 @@ function CardOrder({ id, order, status, date, price }) {
         type="button"
       >
         { order }
-        {' '}
       </button>
       <p
         data-testid={ `customer_orders__element-delivery-status-${id}` }
