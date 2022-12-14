@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-function CardSellerOrders({ id, status, date, price }) {
+function CardSellerOrders({ id, status, date, price, address }) {
   const history = useHistory();
   const caracteres = 10;
-  const dateFix = date.slice(0, caracteres).split('-').reverse().join('/');
 
   return (
     <div>
@@ -24,17 +23,17 @@ function CardSellerOrders({ id, status, date, price }) {
       <p
         data-testid={ `seller_orders__element-order-date-${id}` }
       >
-        { dateFix }
+        { date ? date.slice(0, caracteres).split('-').reverse().join('/') : date }
       </p>
       <p
         data-testid={ `seller_orders__element-card-price-${id}` }
       >
-        { price.replace('.', ',') }
+        {`${((Number(price)).toFixed(2)).toString().replace('.', ',')}`}
       </p>
       <p
         data-testid={ `seller_orders__element-card-address-${id}` }
       >
-        { status }
+        { address }
       </p>
     </div>
   );
@@ -45,6 +44,7 @@ CardSellerOrders.propTypes = {
   status: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
 };
 
 export default CardSellerOrders;
