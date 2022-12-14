@@ -62,12 +62,6 @@ describe('Testando a tela de Login',() => {
   it('Deve ser redirecionado para a tela de produtos ao passar email e senha válidos com um usuário comprador', async () => {
     localStorage.clear()
 
-    api.post.mockImplementation(() => Promise.resolve({ data:{
-      name: "Fulana Pereira",
-      email: "zebirita@email.com", 
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZnVsYW5hQGRlbGl2ZXJ5YXBwLmNvbSJ9LCJpYXQiOjE2NzEwNDY2MjZ9.UqmSEt-yKyj6BlgDp_dONU-tVXHOO8kFpW7iXpeBjjs"
-    }}))
-
     const history = createMemoryHistory();
     render(
       <Router history={ history }>
@@ -125,12 +119,6 @@ describe('Testando a tela de Login',() => {
   it('Deve ser redirecionado para a tela de seller order ao passar email e senha válidos com um usuário vendedor', async () => {
     localStorage.clear()
 
-    api.post.mockImplementation(() => Promise.resolve({ data:{
-      name: "Fulana Pereira",
-      email: "zebirita@email.com", 
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZnVsYW5hQGRlbGl2ZXJ5YXBwLmNvbSJ9LCJpYXQiOjE2NzEwNDY2MjZ9.UqmSEt-yKyj6BlgDp_dONU-tVXHOO8kFpW7iXpeBjjs"
-    }}))
-
     const history = createMemoryHistory();
     render(
       <Router history={ history }>
@@ -187,12 +175,6 @@ describe('Testando a tela de Login',() => {
 
   it('Deve ser redirecionado para a tela de admin ao passar email e senha válidos com um usuário admin', async () => {
     localStorage.clear()
-
-    api.post.mockImplementation(() => Promise.resolve({ data:{
-      name: "Fulana Pereira",
-      email: "zebirita@email.com", 
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZnVsYW5hQGRlbGl2ZXJ5YXBwLmNvbSJ9LCJpYXQiOjE2NzEwNDY2MjZ9.UqmSEt-yKyj6BlgDp_dONU-tVXHOO8kFpW7iXpeBjjs"
-    }}))
 
     const history = createMemoryHistory();
     render(
