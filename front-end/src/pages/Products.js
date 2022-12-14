@@ -42,7 +42,7 @@ function Products() {
   return (
     <div>
       <Navbar />
-      {products.length > 1 && (
+      {products && products.length > 1 && (
         products.map((p, index) => (
           <Card
             // key={ uuidv4() }

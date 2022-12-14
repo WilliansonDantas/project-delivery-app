@@ -11,7 +11,9 @@ function LoginBtn() {
 
   async function login(body) {
     try {
+      console.log('qqrer texto');
       const result = await postData('/login', body);
+      console.log('qqrer texto', result);
       localStorage.setItem('user', JSON.stringify(result));
       if (result.role === 'customer') history.push('/customer/products');
       if (result.role === 'administrator') history.push('/admin/manage');

@@ -6,7 +6,7 @@ import App from '../App';
 
 jest.mock('../services/requests')
 
-describe('Testando a tela de Register',() => {
+describe.skip('Testando a tela de Register',() => {
 
   afterEach(() => jest.clearAllMocks())
 
