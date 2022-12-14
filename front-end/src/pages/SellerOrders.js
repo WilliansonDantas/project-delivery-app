@@ -9,8 +9,12 @@ function SellerOrders() {
   useEffect(() => {
     const sellersData = async () => {
       const data = await getData('sellers');
-      console.log(data);
-      setSellerOrders(data);
+      const { email } = JSON.parse(localStorage.getItem('user'));
+      const filterSeller = data.filter((sellers) => sellers.email === email);
+      const sellerId = filterSeller[0].id;
+      const dataId = await getData(`/sellers/${sellerId}/orders`);
+      console.log(dataId);
+      setSellerOrders(dataId);
     };
     sellersData();
   }, []);
@@ -23,9 +27,10 @@ function SellerOrders() {
           <CardSellerOrders
             key={ seller.id }
             id={ seller.id }
-            // status={ order.status }
-            // date={ order.saleDate }
-            // price={ order.totalPrice }
+            status={ seller.status }
+            date={ seller.saleDate }
+            price={ seller.totalPrice }
+            address={ seller.deliveryAddress }
           />
         )))}
     </div>
