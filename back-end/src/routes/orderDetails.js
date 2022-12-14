@@ -4,6 +4,6 @@ const { validateJWT } = require('../middlewares');
 
 const orderDetails = Router();
 
-orderDetails.get('/order/details/:id', validateJWT, orderByUser);
+orderDetails.get('/order/details/:email', validateJWT, orderByUser);
 
 module.exports = orderDetails;

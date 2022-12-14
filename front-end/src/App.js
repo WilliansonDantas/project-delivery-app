@@ -22,9 +22,9 @@ function App() {
           </Route>
           <Route path="/login" component={ Login } />
           <Route path="/register" component={ Register } />
-          <Route path="/customer/checkout" component={ Checkout } />
-          <Route path="/customer/products" component={ Products } />
-          <Route path="/customer/orders" component={ Orders } />
+          <Route exact path="/customer/checkout" component={ Checkout } />
+          <Route exact path="/customer/products" component={ Products } />
+          <Route exact path="/customer/orders" component={ Orders } />
           <Route exact path="/customer/orders/:id" component={ OrdersId } />
         </LoginProvider>
         <RegisterProvider>
