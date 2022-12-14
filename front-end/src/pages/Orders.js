@@ -15,7 +15,6 @@ function Orders() {
   useEffect(() => {
     const ordersPlaced = async () => {
       await findUserOrders();
-      // setOrders(data);
     };
     ordersPlaced();
   }, []);

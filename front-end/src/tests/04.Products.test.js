@@ -72,7 +72,4 @@ describe('Testando a tela de Products',() => {
     userEvent.type(alterProductByInputProduct1, "5")
     
   })
-
-  
-
 })
