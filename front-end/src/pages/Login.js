@@ -16,7 +16,6 @@ function Login() {
     if (!localStorage.getItem('user')) {
       return;
     }
-    console.log(localStorage.getItem('user'));
     const { role } = JSON.parse(localStorage.getItem('user'));
     if (role === 'customer') history.push('/customer/products');
     if (role === 'administrator') history.push('/admin/manage');

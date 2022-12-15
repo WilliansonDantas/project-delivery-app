@@ -10,11 +10,13 @@ function SellerOrders() {
     const sellersData = async () => {
       const data = await getData('sellers');
       const { email } = JSON.parse(localStorage.getItem('user'));
-      const filterSeller = data.filter((sellers) => sellers.email === email);
-      const sellerId = filterSeller[0].id;
-      const dataId = await getData(`/sellers/${sellerId}/orders`);
-      console.log(dataId);
-      setSellerOrders(dataId);
+      if (data) {
+        const filterSeller = data.filter((sellers) => sellers.email === email);
+        const sellerId = filterSeller[0].id;
+        const dataId = await getData(`/sellers/${sellerId}/orders`);
+        return setSellerOrders(dataId);
+      }
+      return setSellerOrders([]);
     };
     sellersData();
   }, []);
