@@ -3,7 +3,6 @@ import React from 'react';
 import Login from './pages/Login';
 import LoginProvider from './contexts/LoginProvider';
 import UserProvider from './contexts/UserProvider';
-import RegisterProvider from './contexts/RegisterProvider';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
@@ -27,10 +26,8 @@ function App() {
           <Route exact path="/customer/orders/:id" component={ OrdersId } />
           <Route exact path="/customer/orders" component={ Orders } />
           <Route exact path="/seller/orders" component={ SellerOrders } />
+          <Route exact path="/admin/manage" component={ Admin } />
         </LoginProvider>
-        <RegisterProvider>
-          <Route path="/admin/manage" component={ Admin } />
-        </RegisterProvider>
       </UserProvider>
     </Switch>
   );
