@@ -34,7 +34,6 @@ function LoginBtn() {
       ) : (
         <button
           type="button"
-          onClick={ async () => login({ email, password }) }
           data-testid="common_login__button-login"
           disabled
         >
