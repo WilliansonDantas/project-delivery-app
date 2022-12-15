@@ -13,7 +13,6 @@ function SellerOrders() {
       const filterSeller = data.filter((sellers) => sellers.email === email);
       const sellerId = filterSeller[0].id;
       const dataId = await getData(`/sellers/${sellerId}/orders`);
-      console.log(dataId);
       setSellerOrders(dataId);
     };
     sellersData();
