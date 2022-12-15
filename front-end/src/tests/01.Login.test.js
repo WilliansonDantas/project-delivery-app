@@ -297,7 +297,7 @@ describe('Testando a tela de Login',() => {
       role: "seller",
       email: "mail@mail.com",
       token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoibWFpbEBtYWlsLmNvbSJ9LCJpYXQiOjE2NzExMDk1NDJ9.OsKIBKcQjG30MY8qgvRynGzdr5G9f-wlQI14dD9djCk"
-  })
+    })
 
     const history = createMemoryHistory();
     render(
