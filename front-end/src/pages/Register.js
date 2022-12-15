@@ -23,6 +23,7 @@ function Register() {
       await postData('/register', { name, email, password });
       const resultLogin = await postData('/login', { email, password });
       localStorage.setItem('user', JSON.stringify(resultLogin));
+      console.log(resultLogin);
       return history.push('/customer/products');
     } catch (error) {
       setConflict(true);
