@@ -2,13 +2,12 @@ const { Op } = require('sequelize');
 const { User } = require('../database/models');
 
 const registerAdmUser = async (name, email, password, role) => {
-  // const checkedEmail = await User.findOne({ where: { email } });
-  const checkedName = await User.findOne({ where: { 
+  const checked = await User.findOne({ where: { 
     [
       Op.or
-    ]: [{email}, {name}]
+    ] : [ { email }, { name } ]
    } });
-  if (checkedEmail || checkedName) {
+  if (checked) {
     throw new Error('Conflict');
   }
   return User.create({ name, email, password, role });
