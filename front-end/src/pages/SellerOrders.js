@@ -14,11 +14,11 @@ function SellerOrders() {
         const filterSeller = data.filter((sellers) => sellers.email === email);
         const sellerId = filterSeller[0].id;
         const dataId = await getData(`/sellers/${sellerId}/orders`);
-        setSellerOrders(dataId);
+        return setSellerOrders(dataId);
       }
-      setSellerOrders([]);
+      return setSellerOrders([]);
     };
-    sellersData();
+    return sellersData();
   }, []);
 
   return (
