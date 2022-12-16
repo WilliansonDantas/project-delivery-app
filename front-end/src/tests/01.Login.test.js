@@ -245,6 +245,7 @@ describe('Testando a tela de Login',() => {
 
     const inputPassword = screen.getByTestId('common_login__input-password')
     expect(inputPassword).toBeInTheDocument()    
+
     
     const btnLogin = screen.getByTestId('common_login__button-login');
     expect(btnLogin).toBeInTheDocument();
@@ -350,5 +351,7 @@ describe('Testando a tela de Login',() => {
 
 
     await waitFor(() => expect(history.location.pathname).toEqual('/admin/manage')) 
+
+
   });
 })

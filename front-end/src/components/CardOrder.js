@@ -39,14 +39,14 @@ function CardOrder({ id, order, status, date, price }) {
       <p
         data-testid={ `customer_orders__element-card-price-${id}` }
       >
-        { price.replace('.', ',') }
+        {() => { if (price) price.replace('.', ','); } }
       </p>
     </div>
   );
 }
 
 CardOrder.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   order: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,

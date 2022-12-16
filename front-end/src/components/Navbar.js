@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <nav>
       { location.pathname !== '/seller/orders'
-        ? (
+        && (
           <button
             data-testid="customer_products__element-navbar-link-products"
             type="button"
@@ -22,8 +22,7 @@ function Navbar() {
           >
             Produtos
           </button>
-        )
-        : null}
+        )}
       <button
         data-testid="customer_products__element-navbar-link-orders"
         type="button"

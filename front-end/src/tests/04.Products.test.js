@@ -72,4 +72,119 @@ describe('Testando a tela de Products',() => {
     userEvent.type(alterProductByInputProduct1, "5")
     
   })
+
+  it('Fazendo o logout de um usuário', () => {
+    getData.mockResolvedValue(allProducts)
+
+    const localStorageMock = (function () {
+      let store = {};
+    
+      return {
+        getItem(key) {
+          return store[key];
+        },
+    
+        setItem(key, value) {
+          store[key] = value;
+        },
+    
+        clear() {
+          store = {};
+        },
+    
+        removeItem(key) {
+          delete store[key];
+        },
+    
+        getAll() {
+          return store;
+        },
+      };
+    })();
+    
+    Object.defineProperty(window, "localStorage", { value: localStorageMock });
+    localStorage.setItem('user', JSON.stringify({name: "Fulana Pereira",
+    email: "fulana@deliveryapp.com", 
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZnVsYW5hQGRlbGl2ZXJ5YXBwLmNvbSJ9LCJpYXQiOjE2NzAzNjIwNzYsImV4cCI6MTY3MDk2Njg3Nn0.XoJqWF95wpRb0v92LRMIaj7AE5Mb19ZARbVyrXkcJHE"}))
+
+    const history = createMemoryHistory();
+    render(
+      <Router history={ history }>
+        <App />
+      </Router>
+    );
+    history.push('/customer/products')
+
+    const logoutButton = screen.getByTestId('customer_products__element-navbar-link-logout')
+    expect(logoutButton).toBeInTheDocument()
+
+    userEvent.click(logoutButton)
+
+    expect(history.location.pathname).toEqual('/login')
+  })
+
+  it('Fazendo redirecionamento de tela utilizando NavBar quando logado com um usuário customer', () => {
+    getData.mockResolvedValue(allProducts)
+
+    const localStorageMock = (function () {
+      let store = {};
+    
+      return {
+        getItem(key) {
+          return store[key];
+        },
+    
+        setItem(key, value) {
+          store[key] = value;
+        },
+    
+        clear() {
+          store = {};
+        },
+    
+        removeItem(key) {
+          delete store[key];
+        },
+    
+        getAll() {
+          return store;
+        },
+      };
+    })();
+    
+    Object.defineProperty(window, "localStorage", { value: localStorageMock });
+    localStorage.setItem('user', JSON.stringify({name: "Fulana Pereira",
+    email: "fulana@deliveryapp.com", 
+    role: "customer",
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiZnVsYW5hQGRlbGl2ZXJ5YXBwLmNvbSJ9LCJpYXQiOjE2NzAzNjIwNzYsImV4cCI6MTY3MDk2Njg3Nn0.XoJqWF95wpRb0v92LRMIaj7AE5Mb19ZARbVyrXkcJHE"}))
+
+    const history = createMemoryHistory();
+    render(
+      <Router history={ history }>
+        <App />
+      </Router>
+    );
+    history.push('/customer/orders')
+
+    const navBarProductsBtn = screen.getByTestId('customer_products__element-navbar-link-products');
+    expect(navBarProductsBtn).toBeInTheDocument()
+
+    userEvent.click(navBarProductsBtn)
+
+    expect(history.location.pathname).toEqual('/customer/products')
+
+    const navBarMyOrdersBtn = screen.getByTestId('customer_products__element-navbar-link-orders');
+    expect(navBarMyOrdersBtn).toBeInTheDocument();
+
+    userEvent.click(navBarMyOrdersBtn)
+
+    expect(history.location.pathname).toEqual('/customer/orders')
+
+    const navBarUserNameBtn = screen.getByTestId("customer_products__element-navbar-user-full-name")
+    expect(navBarUserNameBtn).toBeInTheDocument();
+
+    userEvent.click(navBarUserNameBtn)
+
+    expect(history.location.pathname).toEqual('/customer/orders')
+  })
 })
