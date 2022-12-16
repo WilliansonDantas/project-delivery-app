@@ -29,4 +29,11 @@ export const postData = async (endpoint, body) => {
   return data;
 };
 
+export const deleteData = async (endpoint) => {
+  const { data } = await api.delete(endpoint, { headers: {
+    Authorization: verifyLocalStorage(),
+  } });
+  return data;
+};
+
 export default api;
