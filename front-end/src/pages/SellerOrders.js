@@ -10,6 +10,7 @@ function SellerOrders() {
     const sellersData = async () => {
       const data = await getData('sellers');
       const { email } = JSON.parse(localStorage.getItem('user'));
+      console.log('chegando aqui');
       if (data) {
         const filterSeller = data.filter((sellers) => sellers.email === email);
         const sellerId = filterSeller[0].id;
