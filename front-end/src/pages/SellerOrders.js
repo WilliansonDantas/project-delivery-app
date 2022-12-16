@@ -10,20 +10,13 @@ function SellerOrders() {
     const sellersData = async () => {
       const data = await getData('sellers');
       const { email } = JSON.parse(localStorage.getItem('user'));
-<<<<<<< HEAD
       if (data) {
         const filterSeller = data.filter((sellers) => sellers.email === email);
         const sellerId = filterSeller[0].id;
         const dataId = await getData(`/sellers/${sellerId}/orders`);
-        return setSellerOrders(dataId);
+        setSellerOrders(dataId);
       }
-      return setSellerOrders([]);
-=======
-      const filterSeller = data.filter((sellers) => sellers.email === email);
-      const sellerId = filterSeller[0].id;
-      const dataId = await getData(`/sellers/${sellerId}/orders`);
-      setSellerOrders(dataId);
->>>>>>> d5a4579d27f6a19b9247427192049210c389ada7
+      setSellerOrders([]);
     };
     sellersData();
   }, []);
@@ -31,7 +24,7 @@ function SellerOrders() {
   return (
     <div>
       <Navbar />
-      {sellerOrders.length > 1 && (
+      {sellerOrders.length >= 1 && (
         sellerOrders.map((seller) => (
           <CardSellerOrders
             key={ seller.id }
