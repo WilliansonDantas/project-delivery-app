@@ -9,6 +9,7 @@ const {
   saleRouter,
   sellerRouter,
   orderDetails,
+  usersRouter,
   } = require('../routes');
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(productsRouter);
 app.use(saleRouter);
 app.use(sellerRouter);
 app.use(orderDetails);
+app.use(usersRouter);
 app.use(error);
 
 module.exports = app;

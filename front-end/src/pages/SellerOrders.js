@@ -10,6 +10,7 @@ function SellerOrders() {
     const sellersData = async () => {
       const data = await getData('sellers');
       const { email } = JSON.parse(localStorage.getItem('user'));
+<<<<<<< HEAD
       if (data) {
         const filterSeller = data.filter((sellers) => sellers.email === email);
         const sellerId = filterSeller[0].id;
@@ -17,6 +18,12 @@ function SellerOrders() {
         return setSellerOrders(dataId);
       }
       return setSellerOrders([]);
+=======
+      const filterSeller = data.filter((sellers) => sellers.email === email);
+      const sellerId = filterSeller[0].id;
+      const dataId = await getData(`/sellers/${sellerId}/orders`);
+      setSellerOrders(dataId);
+>>>>>>> d5a4579d27f6a19b9247427192049210c389ada7
     };
     sellersData();
   }, []);

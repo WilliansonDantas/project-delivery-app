@@ -12,23 +12,27 @@ function NavbarAdmin() {
 
   return (
     <nav>
-      <ul>
-        <li data-testid="customer_products__element-navbar-link-orders">
-          <a href="/customer/orders">Gerenciar Usuários</a>
-        </li>
-        <li data-testid="customer_products__element-navbar-user-full-name">
-          <a href="/customer/products">{ userLoggedIn.name }</a>
-        </li>
-        <li>
-          <button
-            data-testid="customer_products__element-navbar-link-logout"
-            type="button"
-            onClick={ () => logout() }
-          >
-            Sair
-          </button>
-        </li>
-      </ul>
+      <button
+        data-testid="customer_products__element-navbar-link-orders"
+        type="button"
+        onClick={ () => history.push('/customer/orders') }
+      >
+        Gerenciar Usuários
+      </button>
+      <button
+        data-testid="customer_products__element-navbar-user-full-name"
+        type="button"
+        onClick={ () => history.push('/customer/products') }
+      >
+        { userLoggedIn.name }
+      </button>
+      <button
+        data-testid="customer_products__element-navbar-link-logout"
+        type="button"
+        onClick={ () => logout() }
+      >
+        Sair
+      </button>
     </nav>
   );
 }
