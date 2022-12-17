@@ -53,16 +53,15 @@ const findProductData = async (id) => {
 };
 
 const putSaleService = async ({ id, status }) => {
-  console.log(id, status, 'testandooooooooooo');
   await Sale.update(
     {
-      status: status,
+      status,
     },
     {
       where: {
-        id: id,
+        id,
       },
-    }
+    },
   );
 };
   
