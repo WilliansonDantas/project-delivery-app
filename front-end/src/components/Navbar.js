@@ -1,9 +1,8 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function Navbar() {
   const history = useHistory();
-  const location = useLocation();
   const userLoggedIn = JSON.parse(localStorage.getItem('user'));
 
   const logout = () => {
@@ -13,24 +12,19 @@ function Navbar() {
 
   return (
     <nav>
-      { location.pathname !== '/seller/orders'
-        ? (
-          <button
-            data-testid="customer_products__element-navbar-link-products"
-            type="button"
-            onClick={ () => history.push('/customer/products') }
-          >
-            Produtos
-          </button>
-        )
-        : null}
+      <button
+        data-testid="customer_products__element-navbar-link-products"
+        type="button"
+        onClick={ () => history.push('/customer/products') }
+      >
+        Produtos
+      </button>
       <button
         data-testid="customer_products__element-navbar-link-orders"
         type="button"
         onClick={ () => history.push('/customer/orders') }
       >
         Meus Pedidos
-
       </button>
       <button
         data-testid="customer_products__element-navbar-user-full-name"
@@ -38,7 +32,6 @@ function Navbar() {
         onClick={ () => history.push('/customer/orders') }
       >
         { userLoggedIn.name }
-
       </button>
       <button
         data-testid="customer_products__element-navbar-link-logout"
