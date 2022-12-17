@@ -52,6 +52,20 @@ const findProductData = async (id) => {
   return productsDetails;
 };
 
+const putSaleService = async ({ id, status }) => {
+  console.log(id, status, 'testandooooooooooo');
+  await Sale.update(
+    {
+      status: status,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+};
+  
 const requestSale = async (id) => {
   // detalhes pedido
   const orderData = await Sale.findOne({ where: { id }, raw: true });
@@ -75,4 +89,4 @@ const requestSale = async (id) => {
   return orderFullDatails;
 };
 
-module.exports = { registerSale, requestSale };
+module.exports = { registerSale, requestSale, putSaleService };
