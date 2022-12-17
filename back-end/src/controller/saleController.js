@@ -13,7 +13,7 @@ const register = async (req, res) => {
 const putSaleController = async (req, res) => {
   const { body } = req;
   try { 
-    const response = await putSaleService(body);
+    await putSaleService(body);
     return res.status(201).json('Alterado com sucesso');
   } catch (error) {
     return res.status(409).json({ message: error.message });
