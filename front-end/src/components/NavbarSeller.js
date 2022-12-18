@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-function Navbar() {
+function NavbarSeller() {
   const history = useHistory();
   const userLoggedIn = JSON.parse(localStorage.getItem('user'));
 
@@ -13,23 +13,17 @@ function Navbar() {
   return (
     <nav>
       <button
-        data-testid="customer_products__element-navbar-link-products"
-        type="button"
-        onClick={ () => history.push('/customer/products') }
-      >
-        Produtos
-      </button>
-      <button
         data-testid="customer_products__element-navbar-link-orders"
         type="button"
-        onClick={ () => history.push('/customer/orders') }
+        onClick={ () => history.push('/seller/orders') }
       >
         Meus Pedidos
+
       </button>
       <button
         data-testid="customer_products__element-navbar-user-full-name"
         type="button"
-        onClick={ () => history.push('/customer/orders') }
+        onClick={ () => history.push('/seller/orders') }
       >
         { userLoggedIn.name }
       </button>
@@ -44,4 +38,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarSeller;

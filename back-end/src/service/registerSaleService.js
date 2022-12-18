@@ -52,6 +52,19 @@ const findProductData = async (id) => {
   return productsDetails;
 };
 
+const putSaleService = async ({ id, status }) => {
+  await Sale.update(
+    {
+      status,
+    },
+    {
+      where: {
+        id,
+      },
+    },
+  );
+};
+  
 const requestSale = async (id) => {
   // detalhes pedido
   const orderData = await Sale.findOne({ where: { id }, raw: true });
@@ -75,4 +88,4 @@ const requestSale = async (id) => {
   return orderFullDatails;
 };
 
-module.exports = { registerSale, requestSale };
+module.exports = { registerSale, requestSale, putSaleService };

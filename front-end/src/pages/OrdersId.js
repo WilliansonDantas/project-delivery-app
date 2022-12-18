@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getData } from '../services/requests';
+import { getData, putData } from '../services/requests';
 import Navbar from '../components/Navbar';
 import TableOrderDetail from '../components/TableOrderDetail';
 
@@ -14,17 +14,19 @@ function OrdersId() {
   const { id } = useParams();
 
   const caracteres = 10;
+  const conditionDelivered = ['Pendente', 'Preparando', 'Entregue'];
+
+  const orderIdDetail = async () => {
+    const data = await getData(`/sale/${id}`);
+    const { totalPrice, products } = await data;
+    setTotal(totalPrice);
+    setProductsDetails(products);
+    setArrayData(data);
+    setDate(data.saleDate);
+    setStatus(data.status);
+  };
 
   useEffect(() => {
-    const orderIdDetail = async () => {
-      const data = await getData(`/sale/${id}`);
-      const { totalPrice, products } = await data;
-      setTotal(totalPrice);
-      setProductsDetails(products);
-      setArrayData(data);
-      setDate(data.saleDate);
-      setStatus(data.status);
-    };
     orderIdDetail();
   }, []);
 
@@ -33,12 +35,17 @@ function OrdersId() {
       if (status === 'Em Trânsito') {
         setDisabled(false);
       }
+      if (conditionDelivered.some((d) => d === status)) {
+        setDisabled(true);
+      }
     };
     statusVerify();
   }, [status]);
 
-  const buttonDisabled = () => {
+  const buttonDisabled = async (body) => {
+    await putData('/sale', body);
     setStatus('Entregue');
+    orderIdDetail();
   };
 
   return (
@@ -69,7 +76,7 @@ function OrdersId() {
         type="button"
         data-testid="customer_order_details__button-delivery-check"
         disabled={ disabled }
-        onClick={ buttonDisabled }
+        onClick={ () => buttonDisabled({ id, status: 'Entregue' }) }
       >
         MARCAR COMO ENTREGUE
       </button>
