@@ -29,8 +29,9 @@ function Admin() {
     const data = await getData('/users');
     if (data) {
       const userData = data.filter((u) => u.role !== 'administrator');
-      setUsers(userData);
+      return setUsers(userData);
     }
+    return setUser([]);
   };
 
   useEffect(() => {
