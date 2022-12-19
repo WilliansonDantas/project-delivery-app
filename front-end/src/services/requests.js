@@ -36,4 +36,11 @@ export const deleteData = async (endpoint) => {
   return data;
 };
 
+export const putData = async (endpoint, body) => {
+  const { data } = await api.put(endpoint, body, { headers: {
+    Authorization: verifyLocalStorage(),
+  } });
+  return data;
+};
+
 export default api;

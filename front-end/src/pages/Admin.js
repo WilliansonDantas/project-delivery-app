@@ -104,7 +104,7 @@ function Admin() {
         </label>
       </form>
       <button
-        type="submit"
+        type="button"
         data-testid="admin_manage__button-register"
         disabled={ !valid }
         onClick={ () => cadastrar({ name, email, password, role }) }
