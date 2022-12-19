@@ -1,10 +1,10 @@
-import { getByTestId, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import App from '../App';
 import { getData, postData,putData,deleteData } from '../services/requests';
-import api from '../services/requests'
+
 import { order,
     orderByOrderIdEmTransito,
      orderByOrderIdEntregue,
