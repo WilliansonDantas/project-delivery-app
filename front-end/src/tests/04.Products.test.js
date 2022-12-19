@@ -60,6 +60,11 @@ describe('Testando a tela de Products',() => {
     userEvent.click(insertProductButton1)
     userEvent.click(insertProductButton1)
 
+    const insertProductButton2 = await screen.findByTestId('customer_products__button-card-add-item-2')
+    expect(insertProductButton2).toBeInTheDocument()
+    userEvent.click(insertProductButton2)
+    userEvent.click(insertProductButton2)
+
     const removeProductButton1 = await screen.findByTestId('customer_products__button-card-rm-item-1')
     expect(removeProductButton1).toBeInTheDocument()
     userEvent.click(removeProductButton1)
