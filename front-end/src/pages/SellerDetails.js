@@ -21,7 +21,6 @@ function SellerDetails() {
 
   const sellerIdDetail = async () => {
     const data = await getData(`/sale/${id}`);
-    console.log(data);
     const { totalPrice, products } = await data;
     setTotal(totalPrice);
     setProductsDetails(products);
