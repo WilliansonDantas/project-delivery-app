@@ -13,7 +13,7 @@ describe('Testando a tela de Login',() => {
 
   afterEach(() => jest.clearAllMocks())
 
-  it('Deve possuir dois inputs "email", "senha" e dois botões de submissão de dados',() => {
+  it('Deve possuir dois inputs "email", "senha" e dois botões de submissão de dados',async () => {
     const history = createMemoryHistory();
     render(
       <Router history={ history }>
@@ -32,6 +32,9 @@ describe('Testando a tela de Login',() => {
 
     const btnRegister = screen.getByTestId('common_login__button-register');
     expect(btnRegister).toBeInTheDocument();
+
+    userEvent.click(btnRegister)
+    await waitFor(() => expect(history.location.pathname).toEqual('/register'))
   })
 
   it('O botão de Login deve ser habilitado ao ser preenchido os campos dos inputs', () => {

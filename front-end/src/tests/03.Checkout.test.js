@@ -283,7 +283,9 @@ describe('Testando a tela de Checkout',() => {
     expect(goCartButton).toBeInTheDocument()
     userEvent.click(goCartButton)
 
-    expect(await screen.findByTestId("customer_checkout__select-seller")).toBeInTheDocument()
+    const selectedSellerBtn = await screen.findByTestId("customer_checkout__select-seller")
+    expect(selectedSellerBtn).toBeInTheDocument()
+    userEvent.selectOptions(selectedSellerBtn, "Fulana Pereira")
     
     const inputAddress = screen.getByTestId('customer_checkout__input-address')
     expect(inputAddress).toBeInTheDocument()

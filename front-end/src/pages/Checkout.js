@@ -71,16 +71,6 @@ function Checkout() {
     getSellers();
   }, []);
 
-  // INICIALIZA O STORAGE CASO ESTEJA VAZIO
-  useEffect(() => {
-    if (!localStorage.getItem('totalprice')) {
-      localStorage.setItem('totalprice', JSON.stringify({ total: 0 }));
-    }
-    if (!localStorage.getItem('allProducts')) {
-      return localStorage.setItem('allProducts', JSON.stringify([]));
-    }
-  }, []);
-
   return (
     <div>
       <Navbar />
