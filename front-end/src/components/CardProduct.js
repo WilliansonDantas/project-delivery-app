@@ -28,6 +28,7 @@ function Card({
           };
           return newAddObj;
         }
+        console.log(el);
         return el;
       });
       setProductsClick(itemSum);

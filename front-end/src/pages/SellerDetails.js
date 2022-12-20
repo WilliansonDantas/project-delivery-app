@@ -21,12 +21,13 @@ function SellerDetails() {
 
   const sellerIdDetail = async () => {
     const data = await getData(`/sale/${id}`);
-    console.log(data);
     const { totalPrice, products } = await data;
-    setTotal(totalPrice);
-    setProductsDetails(products);
-    setDate(data.saleDate);
-    setStatus(data.status);
+    if (data) {
+      setTotal(totalPrice);
+      setProductsDetails(products);
+      setDate(data.saleDate);
+      setStatus(data.status);
+    }
   };
 
   useEffect(() => {
@@ -54,7 +55,6 @@ function SellerDetails() {
 
   const buttonPrepared = async (body) => {
     await putData('/sale', body);
-    console.log(body);
     setStatus('Preparando');
     sellerIdDetail();
   };
@@ -77,7 +77,7 @@ function SellerDetails() {
         <p
           data-testid="seller_order_details__element-order-details-label-order-date"
         >
-          { date ? date.slice(0, caracteres).split('-').reverse().join('/') : date }
+          { date && date.slice(0, caracteres).split('-').reverse().join('/') }
         </p>
         <p
           data-testid="seller_order_details__element-order-details-label-delivery-status"

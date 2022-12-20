@@ -6,7 +6,6 @@ const path = '../../jwt.evaluation.key';
 
 const secret = fs.readFileSync(join(__dirname, path), 'utf-8');
 const jwtConfig = {
-  expiresIn: '7d',
   algorithm: 'HS256',
 };
 

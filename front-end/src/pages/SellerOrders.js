@@ -12,12 +12,14 @@ function SellerOrders() {
     const sellersData = async () => {
       const data = await getData('sellers');
       const { email } = JSON.parse(localStorage.getItem('user'));
-      const filterSeller = data.filter((sellers) => sellers.email === email);
-      const sellerId = filterSeller[0].id;
-      const dataId = await getData(`/sellers/${sellerId}/orders`);
-      setSellerOrders(dataId);
+      if (data) {
+        const filterSeller = data.filter((sellers) => sellers.email === email);
+        const sellerId = filterSeller[0].id;
+        const dataId = await getData(`/sellers/${sellerId}/orders`);
+        return setSellerOrders(dataId);
+      }
     };
-    sellersData();
+    return sellersData();
   }, []);
 
   return (
@@ -45,8 +47,8 @@ function SellerOrders() {
               <p
                 data-testid={ `seller_orders__element-order-date-${seller.id}` }
               >
-                { seller.saleDate ? seller.saleDate
-                  .slice(0, caracteres).split('-').reverse().join('/') : seller.saleDate }
+                { seller.saleDate && seller.saleDate
+                  .slice(0, caracteres).split('-').reverse().join('/') }
               </p>
               <p
                 data-testid={ `seller_orders__element-card-price-${seller.id}` }
