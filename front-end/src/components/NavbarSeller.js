@@ -11,11 +11,14 @@ function NavbarSeller() {
   };
 
   return (
-    <nav>
+    <nav
+      className="bg-white border-gray-200 rounded dark:bg-gray-900 flex"
+    >
       <button
         data-testid="customer_products__element-navbar-link-orders"
         type="button"
         onClick={ () => history.push('/seller/orders') }
+        className="container flex flex-wrap items-center justify-between"
       >
         Meus Pedidos
 
@@ -24,6 +27,7 @@ function NavbarSeller() {
         data-testid="customer_products__element-navbar-user-full-name"
         type="button"
         onClick={ () => history.push('/seller/orders') }
+        className="container flex flex-wrap items-center justify-between"
       >
         { userLoggedIn.name }
       </button>
@@ -31,6 +35,7 @@ function NavbarSeller() {
         data-testid="customer_products__element-navbar-link-logout"
         type="button"
         onClick={ () => logout() }
+        className="container flex flex-wrap items-center justify-between"
       >
         Sair
       </button>

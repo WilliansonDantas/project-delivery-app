@@ -57,44 +57,63 @@ function Admin() {
   };
 
   return (
-    <>
-      <NavbarAdmin />
-      <h2>Cadastrar novo usuário</h2>
-      <form>
-        <label htmlFor="name">
-          Nome
+    <div className="bg-orange-200 min-h-screen items-center justify-center">
+      <div
+        className="bg-white border-gray-200 px-2 sm:px-4 py-2.5
+      rounded dark:bg-gray-900 mb-8"
+      >
+
+        <NavbarAdmin />
+      </div>
+
+      <h2
+        className="mb-8 text-center font-bold"
+      >
+        Cadastrar novo usuário
+
+      </h2>
+      <form className="flex">
+        <label
+          htmlFor="name"
+        >
+          Nome:
           <input
             data-testid="admin_manage__input-name"
             value={ name }
+            className="email bg-black rounded text-white "
+            htmlFor="grid-first-name"
             type="text"
             placeholder="Nome e sobrenome"
             onChange={ (e) => setName(e.target.value) }
           />
         </label>
         <label htmlFor="email">
-          Email
+          Email:
           <input
             data-testid="admin_manage__input-email"
             value={ email }
+            className="email bg-black rounded text-white"
             type="email"
             placeholder="exemplo@exemplo.com"
             onChange={ (e) => setEmail(e.target.value) }
           />
         </label>
         <label htmlFor="senha">
-          Senha
+          Senha:
           <input
             data-testid="admin_manage__input-password"
             value={ password }
+            className="password bg-black rounded text-white"
             type="password"
             placeholder="**********"
             onChange={ (e) => setPassword(e.target.value) }
           />
         </label>
         <label htmlFor="select-role">
-          Tipo
+          Tipo:
           <select
             data-testid="admin_manage__select-role"
+            className="email bg-black rounded text-white"
             value={ role }
             onChange={ (e) => setRole(e.target.value) }
           >
@@ -109,6 +128,7 @@ function Admin() {
         data-testid="admin_manage__button-register"
         disabled={ !valid }
         onClick={ () => cadastrar({ name, email, password, role }) }
+        className="bg-gray-200 p-1 rounded"
       >
         Cadastrar
       </button>
@@ -119,11 +139,17 @@ function Admin() {
           Ops ocorreu um erro
         </span>
       )}
-      <div>
-        Lista de usuários
-        <table>
+      <div className="mb-8 text-center ">
+        <div
+          className="mb-8 text-center font-bold"
+        >
+
+          Lista de usuários
+        </div>
+
+        <table className="table-auto">
           <thead>
-            <tr>
+            <tr className="px-4 py-2">
               {
                 header.map((h, i) => (
                   <td
@@ -138,7 +164,10 @@ function Admin() {
           <tbody>
             {users.length > 0 && (
               users.map((userOne, ind) => (
-                <tr key={ Math.random() * ind }>
+                <tr
+                  className='className="px-4 py-2"'
+                  key={ Math.random() * ind }
+                >
                   <td
                     data-testid={ `admin_manage__element-user-table-item-number-${ind}` }
                   >
@@ -164,6 +193,7 @@ function Admin() {
                       type="button"
                       data-testid={ `admin_manage__element-user-table-remove-${ind}` }
                       onClick={ () => removeItem(userOne.id) }
+                      className="bg-gray-200 p-1 rounded"
                     >
                       Excluir
                     </button>
@@ -173,7 +203,7 @@ function Admin() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
 

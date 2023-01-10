@@ -11,29 +11,40 @@ function NavbarAdmin() {
   };
 
   return (
-    <nav>
-      <button
-        data-testid="customer_products__element-navbar-link-orders"
-        type="button"
-        onClick={ () => history.push('/customer/orders') }
+    <div>
+
+      <nav
+        className="bg-white border-gray-200 rounded dark:bg-gray-900 flex"
       >
-        Gerenciar Usuários
-      </button>
-      <button
-        data-testid="customer_products__element-navbar-user-full-name"
-        type="button"
-        onClick={ () => history.push('/customer/products') }
-      >
-        { userLoggedIn.name }
-      </button>
-      <button
-        data-testid="customer_products__element-navbar-link-logout"
-        type="button"
-        onClick={ () => logout() }
-      >
-        Sair
-      </button>
-    </nav>
+        <button
+          data-testid="customer_products__element-navbar-link-orders"
+          type="button"
+          onClick={ () => history.push('/customer/orders') }
+          className="container flex flex-wrap items-center justify-between"
+
+        >
+          Gerenciar Usuários
+        </button>
+        <button
+          data-testid="customer_products__element-navbar-user-full-name"
+          type="button"
+          onClick={ () => history.push('/customer/products') }
+          className="container flex flex-wrap items-center justify-between"
+
+        >
+          { userLoggedIn.name }
+        </button>
+        <button
+          data-testid="customer_products__element-navbar-link-logout"
+          type="button"
+          onClick={ () => logout() }
+          className="container flex flex-wrap items-center justify-between"
+
+        >
+          Sair
+        </button>
+      </nav>
+    </div>
   );
 }
 

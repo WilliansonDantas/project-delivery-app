@@ -65,41 +65,57 @@ function SellerDetails() {
   };
 
   return (
-    <div>
-      <NavbarSeller />
-      <h1>Detalhe do Pedido</h1>
+    <div
+      className="bg-orange-200 min-h-screen"
+    >
       <div>
-        <p
-          data-testid="seller_order_details__element-order-details-label-order-id"
+
+        <NavbarSeller />
+      </div>
+      <div>
+
+        <h1
+          className="font-bold text-center"
         >
-          { `Pedido: ${id}` }
-        </p>
-        <p
-          data-testid="seller_order_details__element-order-details-label-order-date"
-        >
-          { date && date.slice(0, caracteres).split('-').reverse().join('/') }
-        </p>
-        <p
-          data-testid="seller_order_details__element-order-details-label-delivery-status"
-        >
-          { `${status}` }
-        </p>
-        <button
-          type="button"
-          data-testid="seller_order_details__button-preparing-check"
-          disabled={ disabled }
-          onClick={ () => buttonPrepared({ id, status: 'Preparando' }) }
-        >
-          PREPARAR PEDIDO
-        </button>
-        <button
-          type="button"
-          data-testid="seller_order_details__button-dispatch-check"
-          disabled={ disabledTransit }
-          onClick={ () => buttonTransit({ id, status: transit }) }
-        >
-          SAIU PARA ENTREGA
-        </button>
+          Detalhe do Pedido
+
+        </h1>
+        <div>
+          <p
+            data-testid="seller_order_details__element-order-details-label-order-id"
+          >
+            { `Pedido: ${id}` }
+          </p>
+          <p
+            data-testid="seller_order_details__element-order-details-label-order-date"
+          >
+            { date && date.slice(0, caracteres).split('-').reverse().join('/') }
+          </p>
+          <p
+            data-testid="seller_order_details__
+              element-order-details-label-delivery-status"
+          >
+            { `${status}` }
+          </p>
+          <button
+            type="button"
+            data-testid="seller_order_details__button-preparing-check"
+            disabled={ disabled }
+            onClick={ () => buttonPrepared({ id, status: 'Preparando' }) }
+            className="bg-gray-200 p-3 w-full rounded-lg"
+          >
+            PREPARAR PEDIDO
+          </button>
+          <button
+            type="button"
+            data-testid="seller_order_details__button-dispatch-check"
+            disabled={ disabledTransit }
+            onClick={ () => buttonTransit({ id, status: transit }) }
+            className="bg-gray-200 p-3 w-full rounded-lg"
+          >
+            SAIU PARA ENTREGA
+          </button>
+        </div>
       </div>
       <table>
         <thead>

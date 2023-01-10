@@ -49,37 +49,57 @@ function OrdersId() {
   };
 
   return (
-    <div>
-      <Navbar />
-      <h1>Detalhe do Pedido</h1>
-      <p
-        data-testid="customer_order_details__element-order-details-label-order-id"
-      >
-        { `Pedido: ${id}` }
-      </p>
-      <p
-        data-testid="customer_order_details__element-order-details-label-seller-name"
-      >
-        { `${arrayData.sellerName}` }
-      </p>
-      <p
-        data-testid="customer_order_details__element-order-details-label-order-date"
-      >
-        { date ? date.slice(0, caracteres).split('-').reverse().join('/') : date }
-      </p>
-      <p
-        data-testid="customer_order_details__element-order-details-label-delivery-status"
-      >
-        { `${status}` }
-      </p>
-      <button
-        type="button"
-        data-testid="customer_order_details__button-delivery-check"
-        disabled={ disabled }
-        onClick={ () => buttonDisabled({ id, status: 'Entregue' }) }
-      >
-        MARCAR COMO ENTREGUE
-      </button>
+    <div className="bg-orange-200 min-h-screen items-center justify-center">
+      <div>
+
+        <Navbar />
+      </div>
+      <div>
+
+        <h1
+          className="font-bold text-center"
+        >
+          Detalhe do Pedido
+
+        </h1>
+        <div className="flex ">
+
+          <p
+            data-testid="customer_order_details__element-order-details-label-order-id"
+          >
+            { `Pedido: ${id}` }
+          </p>
+          <p
+            data-testid="customer_order_details__element-order-details-label-seller-name"
+            className="mb-8"
+
+          >
+            { `${arrayData.sellerName}` }
+          </p>
+          <p
+            data-testid="customer_order_details__element-order-details-label-order-date"
+
+          >
+            { date ? date.slice(0, caracteres).split('-').reverse().join('/') : date }
+          </p>
+          <p
+            data-testid="customer_order_details__
+          element-order-details-label-delivery-status"
+          >
+            { `${status}` }
+          </p>
+          <button
+            type="button"
+            data-testid="customer_order_details__button-delivery-check"
+            disabled={ disabled }
+            onClick={ () => buttonDisabled({ id, status: 'Entregue' }) }
+            className="bg-gray-200 rounded-lg"
+          >
+            MARCAR COMO ENTREGUE
+          </button>
+        </div>
+      </div>
+      <br />
       <table>
         <thead>
           <tr>

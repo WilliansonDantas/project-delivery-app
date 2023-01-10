@@ -20,19 +20,25 @@ function Orders() {
   }, []);
 
   return (
-    <div>
-      <Navbar />
-      {orders && orders.length >= 1 && (
-        orders.map((order) => (
-          <CardOrder
-            key={ String(order.id) }
-            id={ String(order.id) }
-            order={ String(order.id) }
-            status={ order.status }
-            date={ order.saleDate }
-            price={ order.totalPrice }
-          />
-        )))}
+    <div className="bg-orange-200 min-h-screen ">
+      <div>
+
+        <Navbar />
+      </div>
+      <div>
+
+        {orders && orders.length >= 1 && (
+          orders.map((order) => (
+            <CardOrder
+              key={ String(order.id) }
+              id={ String(order.id) }
+              order={ String(order.id) }
+              status={ order.status }
+              date={ order.saleDate }
+              price={ order.totalPrice }
+            />
+          )))}
+      </div>
     </div>
   );
 }
