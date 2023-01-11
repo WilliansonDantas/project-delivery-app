@@ -25,7 +25,8 @@ function Orders() {
 
         <Navbar />
       </div>
-      <div>
+      <div className="m-20"> </div>
+      <div className="flex">
 
         {orders && orders.length >= 1 && (
           orders.map((order) => (

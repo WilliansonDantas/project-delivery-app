@@ -102,14 +102,21 @@ function Card({
       >
         { price.replace('.', ',') }
       </p>
-      <img
-        width="100px"
-        height="125px"
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ img }
-        alt={ name }
-        className="w-full"
-      />
+      <div
+        className="flex items-center justify-center"
+      >
+
+        <img
+          style={ {
+            width: '100px',
+            height: '125px',
+          } }
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ img }
+          alt={ name }
+          className=" rounded-t-lg"
+        />
+      </div>
       <div className="flex items-center justify-center">
 
         <button

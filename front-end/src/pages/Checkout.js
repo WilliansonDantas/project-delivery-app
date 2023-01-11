@@ -73,16 +73,15 @@ function Checkout() {
 
   return (
     <div className="bg-orange-200 min-h-screen items-center justify-center">
-      <div
-        className="bg-white border-gray-200 px-2 sm:px-4 py-2.5
-      rounded dark:bg-gray-900 mb-8"
-      >
-
+      <div>
         <Navbar />
       </div>
-      <div>
-
-        <table className="table-auto text-center ">
+      <div className="m-20"> </div>
+      <div className="relative overflow-x-auto">
+        <table
+          className="w-full text-sm m-auto text-center
+          justify-between text-black-500 dark:text-gray-400"
+        >
           <thead>
             <tr>
               <td className="font-bold">Item</td>
@@ -151,13 +150,13 @@ function Checkout() {
           </tbody>
         </table>
         <br />
-        <div>
+        <div className="text-right m-8">
 
           <span
             data-testid="customer_checkout__element-order-total-price"
             className=" font-bold"
           >
-            {cartTotal}
+            {`Valor total: ${cartTotal}`}
           </span>
         </div>
       </div>
@@ -170,7 +169,7 @@ function Checkout() {
           <h1>Detalhes e Endereço para Entrega</h1>
         </div>
         <br />
-        <div className=" justify-content: space-between">
+        <div className="flex m-6 p-16 justify-between">
           <div>
 
             <span>P. vendedora Responsável</span>

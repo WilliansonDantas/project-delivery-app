@@ -72,6 +72,7 @@ function SellerDetails() {
 
         <NavbarSeller />
       </div>
+      <div className="m-20"> </div>
       <div>
 
         <h1
@@ -80,20 +81,23 @@ function SellerDetails() {
           Detalhe do Pedido
 
         </h1>
-        <div>
+        <div className="flex m-10 justify-between ">
           <p
             data-testid="seller_order_details__element-order-details-label-order-id"
+            className="m-auto p-auto"
           >
             { `Pedido: ${id}` }
           </p>
           <p
             data-testid="seller_order_details__element-order-details-label-order-date"
+            className="m-auto p-auto"
           >
             { date && date.slice(0, caracteres).split('-').reverse().join('/') }
           </p>
           <p
             data-testid="seller_order_details__
               element-order-details-label-delivery-status"
+            className="m-auto p-auto"
           >
             { `${status}` }
           </p>
@@ -102,7 +106,7 @@ function SellerDetails() {
             data-testid="seller_order_details__button-preparing-check"
             disabled={ disabled }
             onClick={ () => buttonPrepared({ id, status: 'Preparando' }) }
-            className="bg-gray-200 p-3 w-full rounded-lg"
+            className="bg-gray-200 rounded-lg m-auto p-auto"
           >
             PREPARAR PEDIDO
           </button>
@@ -111,75 +115,87 @@ function SellerDetails() {
             data-testid="seller_order_details__button-dispatch-check"
             disabled={ disabledTransit }
             onClick={ () => buttonTransit({ id, status: transit }) }
-            className="bg-gray-200 p-3 w-full rounded-lg"
+            className="bg-gray-200 rounded-lg m-auto p-auto"
           >
             SAIU PARA ENTREGA
           </button>
         </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            {
-              header.map((h, i) => (
-                <td
-                  key={ Math.random() * i }
-                >
-                  { h }
-                </td>
-              ))
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {productsDetails && (
-            productsDetails.map((el, index) => (
-              <tr key={ index }>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-item-number-${index}`
-                  }
-                >
-                  {index + 1}
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-name-${index}`
-                  }
-                >
-                  { el.name }
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-quantity-${index}`
-                  }
-                >
-                  { el.quantity }
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-unit-price-${index}`
-                  }
-                >
-                  {`R$ ${(el.price).toString().replace('.', ',')}`}
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-sub-total-${index}`
-                  }
-                >
-                  {`R$ ${((Number(el.quantity)
-                * Number(el.price))
-                    .toFixed(2)).toString().replace('.', ',')}`}
-                </td>
-              </tr>
+      <div
+        className="relative overflow-x-auto"
+      >
 
-            )))}
-        </tbody>
-      </table>
-      <span data-testid="seller_order_details__element-order-total-price">
-        {`${((Number(total)).toFixed(2)).toString().replace('.', ',')}`}
-      </span>
+        <table
+          className="w-full text-sm m-auto text-center
+        justify-between text-black-500 dark:text-gray-400"
+        >
+          <thead>
+            <tr>
+              {
+                header.map((h, i) => (
+                  <td
+                    className="font-bold"
+                    key={ Math.random() * i }
+                  >
+                    { h }
+                  </td>
+                ))
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {productsDetails && (
+              productsDetails.map((el, index) => (
+                <tr key={ index }>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-item-number-${index}`
+                    }
+                  >
+                    {index + 1}
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-name-${index}`
+                    }
+                  >
+                    { el.name }
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-quantity-${index}`
+                    }
+                  >
+                    { el.quantity }
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-unit-price-${index}`
+                    }
+                  >
+                    {`R$ ${(el.price).toString().replace('.', ',')}`}
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-sub-total-${index}`
+                    }
+                  >
+                    {`R$ ${((Number(el.quantity)
+                * Number(el.price))
+                      .toFixed(2)).toString().replace('.', ',')}`}
+                  </td>
+                </tr>
+
+              )))}
+          </tbody>
+        </table>
+      </div>
+      <div
+        className="text-right m-20 font-bold"
+        data-testid="seller_order_details__element-order-total-price"
+      >
+        {`Valor Total: ${((Number(total)).toFixed(2)).toString().replace('.', ',')}`}
+      </div>
     </div>
   );
 }

@@ -41,18 +41,17 @@ function Products() {
 
   return (
     <div
-      className="bg-orange-200 min-h-screen"
+      className="bg-orange-200 min-h-screen flex-col"
     >
-      <div className="mb-8">
-
+      <div className="">
         <Navbar />
       </div>
-      <div className="grid grid-cols-3  ">
+      <div className="grid grid-cols-3 flex justify-items-center m-12 ">
 
         {products && products.length > 1 && (
           products.map((p, index) => (
             <div
-              className="m-8"
+              className=" p-14 ml-12 min-h-full min-w-full"
               key={ index }
             >
               <Card

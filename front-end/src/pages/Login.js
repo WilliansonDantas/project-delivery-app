@@ -27,6 +27,11 @@ function Login() {
       <form
         className="bg-white user-login-area p-16 rounded-2xl shadow-lg"
       >
+        <p
+          className="font-sans text-center m-8 font-black text-3xl text-orange-600"
+        >
+          SextouDeliveryApp
+        </p>
         <div className="mb-6">
           <EmailInput setEmail={ setEmail } />
         </div>

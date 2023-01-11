@@ -54,6 +54,7 @@ function OrdersId() {
 
         <Navbar />
       </div>
+      <div className="m-20"> </div>
       <div>
 
         <h1
@@ -62,7 +63,7 @@ function OrdersId() {
           Detalhe do Pedido
 
         </h1>
-        <div className="flex ">
+        <div className="flex m-10 justify-between ">
 
           <p
             data-testid="customer_order_details__element-order-details-label-order-id"
@@ -93,36 +94,46 @@ function OrdersId() {
             data-testid="customer_order_details__button-delivery-check"
             disabled={ disabled }
             onClick={ () => buttonDisabled({ id, status: 'Entregue' }) }
-            className="bg-gray-200 rounded-lg"
+            className="bg-gray-200 rounded-lg m-3"
           >
             MARCAR COMO ENTREGUE
           </button>
         </div>
       </div>
       <br />
-      <table>
-        <thead>
-          <tr>
-            <td>Item</td>
-            <td>Descrição</td>
-            <td>Quantidade</td>
-            <td>Valor Unitário</td>
-            <td>Sub-total</td>
-          </tr>
-        </thead>
-        <tbody>
-          {productsDetails && (
-            productsDetails.map((el, index) => (
-              <TableOrderDetail
-                key={ index }
-                index={ index }
-                name={ el.name }
-                quantity={ el.quantity }
-                price={ el.price }
-              />
-            )))}
-        </tbody>
-      </table>
+      <div className="relative overflow-x-auto">
+
+        <table
+          className="w-full text-sm m-auto text-center
+        justify-between text-black-500 dark:text-gray-400"
+        >
+          <thead>
+            <tr>
+              <td className="font-bold">Item</td>
+              <td className="font-bold">Descrição</td>
+              <td className="font-bold">Quantidade</td>
+              <td className="font-bold">Valor Unitário</td>
+              <td className="font-bold">Sub-total</td>
+            </tr>
+          </thead>
+          <tbody>
+            {productsDetails && (
+              productsDetails.map((el, index) => (
+                <tr
+                  key={ index }
+                >
+                  <TableOrderDetail
+                    key={ index }
+                    index={ index }
+                    name={ el.name }
+                    quantity={ el.quantity }
+                    price={ el.price }
+                  />
+                </tr>
+              )))}
+          </tbody>
+        </table>
+      </div>
       <span data-testid="customer_order_details__element-order-total-price">
         {`${((Number(total)).toFixed(2)).toString().replace('.', ',')}`}
       </span>

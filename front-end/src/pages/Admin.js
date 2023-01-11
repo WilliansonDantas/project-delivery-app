@@ -72,7 +72,7 @@ function Admin() {
         Cadastrar novo usuário
 
       </h2>
-      <form className="flex">
+      <form className="flex m-10 justify-between">
         <label
           htmlFor="name"
         >
@@ -122,16 +122,19 @@ function Admin() {
             <option value="admnistrador">admnistrador</option>
           </select>
         </label>
+        <div>
+
+          <button
+            type="button"
+            data-testid="admin_manage__button-register"
+            disabled={ !valid }
+            onClick={ () => cadastrar({ name, email, password, role }) }
+            className="bg-gray-200 p-1 rounded"
+          >
+            Cadastrar
+          </button>
+        </div>
       </form>
-      <button
-        type="button"
-        data-testid="admin_manage__button-register"
-        disabled={ !valid }
-        onClick={ () => cadastrar({ name, email, password, role }) }
-        className="bg-gray-200 p-1 rounded"
-      >
-        Cadastrar
-      </button>
       { user && (
         <span
           data-testid="admin_manage__element-invalid-register"
@@ -146,62 +149,70 @@ function Admin() {
 
           Lista de usuários
         </div>
+        <div
+          className="relative overflow-x-auto"
+        >
 
-        <table className="table-auto">
-          <thead>
-            <tr className="px-4 py-2">
-              {
-                header.map((h, i) => (
-                  <td
-                    key={ Math.random() * i }
-                  >
-                    { h }
-                  </td>
-                ))
-              }
-            </tr>
-          </thead>
-          <tbody>
-            {users.length > 0 && (
-              users.map((userOne, ind) => (
-                <tr
-                  className='className="px-4 py-2"'
-                  key={ Math.random() * ind }
-                >
-                  <td
-                    data-testid={ `admin_manage__element-user-table-item-number-${ind}` }
-                  >
-                    { ind + 1 }
-                  </td>
-                  <td
-                    data-testid={ `admin_manage__element-user-table-name-${ind}` }
-                  >
-                    { userOne.name }
-                  </td>
-                  <td
-                    data-testid={ `admin_manage__element-user-table-email-${ind}` }
-                  >
-                    { userOne.email }
-                  </td>
-                  <td
-                    data-testid={ `admin_manage__element-user-table-role-${ind}` }
-                  >
-                    { userOne.role }
-                  </td>
-                  <td>
-                    <button
-                      type="button"
-                      data-testid={ `admin_manage__element-user-table-remove-${ind}` }
-                      onClick={ () => removeItem(userOne.id) }
-                      className="bg-gray-200 p-1 rounded"
+          <table
+            className="w-full text-sm m-auto text-center
+          justify-between text-black-500 dark:text-gray-400"
+          >
+            <thead>
+              <tr className=" font-bold">
+                {
+                  header.map((h, i) => (
+                    <td
+                      key={ Math.random() * i }
                     >
-                      Excluir
-                    </button>
-                  </td>
-                </tr>
-              )))}
-          </tbody>
-        </table>
+                      { h }
+                    </td>
+                  ))
+                }
+              </tr>
+            </thead>
+            <tbody>
+              {users.length > 0 && (
+                users.map((userOne, ind) => (
+                  <tr
+                    className='className="px-4 py-2"'
+                    key={ Math.random() * ind }
+                  >
+                    <td
+                      data-testid={ `admin_manage__
+                      element-user-table-item-number-${ind}` }
+                    >
+                      { ind + 1 }
+                    </td>
+                    <td
+                      data-testid={ `admin_manage__element-user-table-name-${ind}` }
+                    >
+                      { userOne.name }
+                    </td>
+                    <td
+                      data-testid={ `admin_manage__element-user-table-email-${ind}` }
+                    >
+                      { userOne.email }
+                    </td>
+                    <td
+                      data-testid={ `admin_manage__element-user-table-role-${ind}` }
+                    >
+                      { userOne.role }
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        data-testid={ `admin_manage__element-user-table-remove-${ind}` }
+                        onClick={ () => removeItem(userOne.id) }
+                        className="bg-gray-200 p-1 rounded"
+                      >
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                )))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
