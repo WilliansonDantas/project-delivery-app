@@ -41,71 +41,84 @@ function Register() {
   }, [name, password, email]);
 
   return (
-    <>
-      {/* adicionar um header */}
+    <div className="bg-orange-200 min-h-screen flex items-center justify-center">
       <form className="user-register-area">
-        <label htmlFor="nome">
-          Nome
-          <input
-            value={ name }
-            data-testid="common_register__input-name"
-            type="text"
-            id="nome"
-            className="nome"
-            placeholder="Seu nome"
-            onChange={ (e) => setName(e.target.value) }
-          />
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
-            value={ email }
-            data-testid="common_register__input-email"
-            type="text"
-            id="email"
-            className="emailInput"
-            placeholder="user@mail.com"
-            onChange={ (e) => setEmail(e.target.value) }
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            value={ password }
-            data-testid="common_register__input-password"
-            type="password"
-            id="password"
-            className="passwordBtn"
-            placeholder="password"
-            onChange={ (e) => setPassword(e.target.value) }
-          />
-        </label>
-        <button
-          disabled={ !valid }
-          type="button"
-          onClick={ async () => createUser() }
-          data-testid="common_register__button-register"
-        >
-          Cadastrar
-        </button>
-        {!valid && (
-          <span
-            data-testid="common_register__element-invalid_register"
-          >
-            Dados inválidos
+        <div className="mb-6">
+          <label htmlFor="nome">
+            Nome:
+            <input
+              value={ name }
+              data-testid="common_register__input-name"
+              type="text"
+              id="nome"
+              className="nome w-full block bg-black rounded p-2 text-white"
+              placeholder="Seu nome"
+              onChange={ (e) => setName(e.target.value) }
+            />
+          </label>
+        </div>
+        <div className="mb-6">
 
-          </span>
-        ) }
-        {conflict && (
-          <span
-            data-testid="common_register__element-invalid_register"
-          >
-            Usuário já cadastrado
+          <label htmlFor="email">
+            Email:
+            <input
+              value={ email }
+              data-testid="common_register__input-email"
+              type="text"
+              id="email"
+              className="w-full block bg-black rounded p-2 text-white"
+              placeholder="user@mail.com"
+              onChange={ (e) => setEmail(e.target.value) }
+            />
+          </label>
+        </div>
+        <div className="mb-6">
 
-          </span>
-        ) }
+          <label htmlFor="password">
+            Password:
+            <input
+              value={ password }
+              data-testid="common_register__input-password"
+              type="password"
+              id="password"
+              className="passwordBtn w-full block bg-black rounded p-2 text-white"
+              placeholder="password"
+              onChange={ (e) => setPassword(e.target.value) }
+            />
+          </label>
+        </div>
+        <div className="mb-6">
+
+          <button
+            disabled={ !valid }
+            type="button"
+            onClick={ async () => createUser() }
+            data-testid="common_register__button-register"
+            className="bg-gray-500 p-3 w-full rounded-lg"
+          >
+            Cadastrar
+          </button>
+          {!valid && (
+            <span
+              data-testid="common_register__element-invalid_register"
+              className="text-red-400 text-center"
+            >
+              Dados inválidos
+
+            </span>
+          ) }
+          {conflict && (
+            <span
+              data-testid="common_register__element-invalid_register"
+              className="text-red-400 text-center"
+            >
+              Usuário já cadastrado
+
+            </span>
+          ) }
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

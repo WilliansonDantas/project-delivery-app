@@ -65,105 +65,137 @@ function SellerDetails() {
   };
 
   return (
-    <div>
-      <NavbarSeller />
-      <h1>Detalhe do Pedido</h1>
+    <div
+      className="bg-orange-200 min-h-screen"
+    >
       <div>
-        <p
-          data-testid="seller_order_details__element-order-details-label-order-id"
-        >
-          { `Pedido: ${id}` }
-        </p>
-        <p
-          data-testid="seller_order_details__element-order-details-label-order-date"
-        >
-          { date && date.slice(0, caracteres).split('-').reverse().join('/') }
-        </p>
-        <p
-          data-testid="seller_order_details__element-order-details-label-delivery-status"
-        >
-          { `${status}` }
-        </p>
-        <button
-          type="button"
-          data-testid="seller_order_details__button-preparing-check"
-          disabled={ disabled }
-          onClick={ () => buttonPrepared({ id, status: 'Preparando' }) }
-        >
-          PREPARAR PEDIDO
-        </button>
-        <button
-          type="button"
-          data-testid="seller_order_details__button-dispatch-check"
-          disabled={ disabledTransit }
-          onClick={ () => buttonTransit({ id, status: transit }) }
-        >
-          SAIU PARA ENTREGA
-        </button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            {
-              header.map((h, i) => (
-                <td
-                  key={ Math.random() * i }
-                >
-                  { h }
-                </td>
-              ))
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {productsDetails && (
-            productsDetails.map((el, index) => (
-              <tr key={ index }>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-item-number-${index}`
-                  }
-                >
-                  {index + 1}
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-name-${index}`
-                  }
-                >
-                  { el.name }
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-quantity-${index}`
-                  }
-                >
-                  { el.quantity }
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-unit-price-${index}`
-                  }
-                >
-                  {`R$ ${(el.price).toString().replace('.', ',')}`}
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-sub-total-${index}`
-                  }
-                >
-                  {`R$ ${((Number(el.quantity)
-                * Number(el.price))
-                    .toFixed(2)).toString().replace('.', ',')}`}
-                </td>
-              </tr>
 
-            )))}
-        </tbody>
-      </table>
-      <span data-testid="seller_order_details__element-order-total-price">
-        {`${((Number(total)).toFixed(2)).toString().replace('.', ',')}`}
-      </span>
+        <NavbarSeller />
+      </div>
+      <div className="m-20"> </div>
+      <div>
+
+        <h1
+          className="font-bold text-center"
+        >
+          Detalhe do Pedido
+
+        </h1>
+        <div className="flex m-10 justify-between ">
+          <p
+            data-testid="seller_order_details__element-order-details-label-order-id"
+            className="m-auto p-auto"
+          >
+            { `Pedido: ${id}` }
+          </p>
+          <p
+            data-testid="seller_order_details__element-order-details-label-order-date"
+            className="m-auto p-auto"
+          >
+            { date && date.slice(0, caracteres).split('-').reverse().join('/') }
+          </p>
+          <p
+            data-testid="seller_order_details__
+              element-order-details-label-delivery-status"
+            className="m-auto p-auto"
+          >
+            { `${status}` }
+          </p>
+          <button
+            type="button"
+            data-testid="seller_order_details__button-preparing-check"
+            disabled={ disabled }
+            onClick={ () => buttonPrepared({ id, status: 'Preparando' }) }
+            className="bg-gray-200 rounded-lg m-auto p-auto"
+          >
+            PREPARAR PEDIDO
+          </button>
+          <button
+            type="button"
+            data-testid="seller_order_details__button-dispatch-check"
+            disabled={ disabledTransit }
+            onClick={ () => buttonTransit({ id, status: transit }) }
+            className="bg-gray-200 rounded-lg m-auto p-auto"
+          >
+            SAIU PARA ENTREGA
+          </button>
+        </div>
+      </div>
+      <div
+        className="relative overflow-x-auto"
+      >
+
+        <table
+          className="w-full text-sm m-auto text-center
+        justify-between text-black-500 dark:text-gray-400"
+        >
+          <thead>
+            <tr>
+              {
+                header.map((h, i) => (
+                  <td
+                    className="font-bold"
+                    key={ Math.random() * i }
+                  >
+                    { h }
+                  </td>
+                ))
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {productsDetails && (
+              productsDetails.map((el, index) => (
+                <tr key={ index }>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-item-number-${index}`
+                    }
+                  >
+                    {index + 1}
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-name-${index}`
+                    }
+                  >
+                    { el.name }
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-quantity-${index}`
+                    }
+                  >
+                    { el.quantity }
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-unit-price-${index}`
+                    }
+                  >
+                    {`R$ ${(el.price).toString().replace('.', ',')}`}
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-sub-total-${index}`
+                    }
+                  >
+                    {`R$ ${((Number(el.quantity)
+                * Number(el.price))
+                      .toFixed(2)).toString().replace('.', ',')}`}
+                  </td>
+                </tr>
+
+              )))}
+          </tbody>
+        </table>
+      </div>
+      <div
+        className="text-right m-20 font-bold"
+        data-testid="seller_order_details__element-order-total-price"
+      >
+        {`Valor Total: ${((Number(total)).toFixed(2)).toString().replace('.', ',')}`}
+      </div>
     </div>
   );
 }

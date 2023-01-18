@@ -23,30 +23,44 @@ function Login() {
   });
 
   return (
-    <>
-      {/* adicionar um header */}
-      <form className="user-login-area">
-        <EmailInput setEmail={ setEmail } />
-        <GenericInput
-          type="password"
-          selector="password"
-          fieldName="Senha"
-          placeholder="Min. 6 dígitos"
-          setter={ setPassword }
-        />
-        <SubmitBtn
-          routeSuffix="login"
-          sendObject={ obj }
-          btnName="Entrar"
-        />
+    <div className="bg-orange-200 min-h-screen flex items-center justify-center">
+      <form
+        className="bg-white user-login-area p-16 rounded-2xl shadow-lg"
+      >
+        <p
+          className="font-sans text-center m-8 font-black text-3xl text-orange-600"
+        >
+          SextouDeliveryApp
+        </p>
+        <div className="mb-6">
+          <EmailInput setEmail={ setEmail } />
+        </div>
+        <div className=" mb-4">
+          <GenericInput
+            type="password"
+            selector="password"
+            fieldName="Senha"
+            placeholder="Min. 6 dígitos"
+            setter={ setPassword }
+          />
+        </div>
+        <div className="text-center mb-4">
+          <SubmitBtn
+            routeSuffix="login"
+            sendObject={ obj }
+            btnName="Entrar"
+          />
+        </div>
+        <div className="text-center">
+          <RegisterBtn
+            data-testid="common_login__input-password"
+            routeSuffix="register"
+            navigation="/register"
+            btnName="Register"
+          />
+        </div>
       </form>
-      <RegisterBtn
-        data-testid="common_login__input-password"
-        routeSuffix="register"
-        navigation="/register"
-        btnName="Register"
-      />
-    </>
+    </div>
   );
 }
 

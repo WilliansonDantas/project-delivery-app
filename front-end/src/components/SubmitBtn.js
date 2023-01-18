@@ -28,6 +28,7 @@ function LoginBtn() {
           type="button"
           onClick={ async () => login({ email, password }) }
           data-testid="common_login__button-login"
+          className="bg-orange-300 p-3 w-full rounded-lg"
         >
           Login
         </button>
@@ -43,6 +44,7 @@ function LoginBtn() {
         user ? (
           <h1
             data-testid="common_login__element-invalid-email"
+            className="text-red-400"
           >
             Usuário não existe!
           </h1>

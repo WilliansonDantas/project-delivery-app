@@ -40,24 +40,36 @@ function Products() {
   };
 
   return (
-    <div>
-      <Navbar />
-      {products && products.length > 1 && (
-        products.map((p, index) => (
-          <Card
-            // key={ uuidv4() }
-            key={ index }
-            id={ p.id }
-            name={ p.name }
-            price={ p.price }
-            img={ p.url_image }
-            setProductsClick={ setProductsClick }
-            productsClick={ productsClick }
-            total={ total }
-            setTotal={ setTotal }
-          />
-        )))}
+    <div
+      className="bg-orange-200 min-h-screen flex-col"
+    >
+      <div className="">
+        <Navbar />
+      </div>
+      <div className="grid grid-cols-3 flex justify-items-center m-12 ">
+
+        {products && products.length > 1 && (
+          products.map((p, index) => (
+            <div
+              className=" p-14 ml-12 min-h-full min-w-full"
+              key={ index }
+            >
+              <Card
+                // key={ uuidv4() }
+                id={ p.id }
+                name={ p.name }
+                price={ p.price }
+                img={ p.url_image }
+                setProductsClick={ setProductsClick }
+                productsClick={ productsClick }
+                total={ total }
+                setTotal={ setTotal }
+              />
+            </div>
+          )))}
+      </div>
       <button
+        className="bg-gray-200 p-3 w-full rounded-lg"
         disabled={ total === '0,00' }
         data-testid="customer_products__button-cart"
         type="button"
@@ -65,6 +77,7 @@ function Products() {
       >
         <span
           data-testid="customer_products__checkout-bottom-value"
+          className="font-bold"
         >
           {`Ver Carrinho R$ ${total}`}
 

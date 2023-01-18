@@ -57,44 +57,63 @@ function Admin() {
   };
 
   return (
-    <>
-      <NavbarAdmin />
-      <h2>Cadastrar novo usuário</h2>
-      <form>
-        <label htmlFor="name">
-          Nome
+    <div className="bg-orange-200 min-h-screen items-center justify-center">
+      <div
+        className="bg-white border-gray-200 px-2 sm:px-4 py-2.5
+      rounded dark:bg-gray-900 mb-8"
+      >
+
+        <NavbarAdmin />
+      </div>
+
+      <h2
+        className="mb-8 text-center font-bold"
+      >
+        Cadastrar novo usuário
+
+      </h2>
+      <form className="flex m-10 justify-between">
+        <label
+          htmlFor="name"
+        >
+          Nome:
           <input
             data-testid="admin_manage__input-name"
             value={ name }
+            className="email bg-black rounded text-white "
+            htmlFor="grid-first-name"
             type="text"
             placeholder="Nome e sobrenome"
             onChange={ (e) => setName(e.target.value) }
           />
         </label>
         <label htmlFor="email">
-          Email
+          Email:
           <input
             data-testid="admin_manage__input-email"
             value={ email }
+            className="email bg-black rounded text-white"
             type="email"
             placeholder="exemplo@exemplo.com"
             onChange={ (e) => setEmail(e.target.value) }
           />
         </label>
         <label htmlFor="senha">
-          Senha
+          Senha:
           <input
             data-testid="admin_manage__input-password"
             value={ password }
+            className="password bg-black rounded text-white"
             type="password"
             placeholder="**********"
             onChange={ (e) => setPassword(e.target.value) }
           />
         </label>
         <label htmlFor="select-role">
-          Tipo
+          Tipo:
           <select
             data-testid="admin_manage__select-role"
+            className="email bg-black rounded text-white"
             value={ role }
             onChange={ (e) => setRole(e.target.value) }
           >
@@ -103,15 +122,19 @@ function Admin() {
             <option value="admnistrador">admnistrador</option>
           </select>
         </label>
+        <div>
+
+          <button
+            type="button"
+            data-testid="admin_manage__button-register"
+            disabled={ !valid }
+            onClick={ () => cadastrar({ name, email, password, role }) }
+            className="bg-gray-200 p-1 rounded"
+          >
+            Cadastrar
+          </button>
+        </div>
       </form>
-      <button
-        type="button"
-        data-testid="admin_manage__button-register"
-        disabled={ !valid }
-        onClick={ () => cadastrar({ name, email, password, role }) }
-      >
-        Cadastrar
-      </button>
       { user && (
         <span
           data-testid="admin_manage__element-invalid-register"
@@ -119,61 +142,79 @@ function Admin() {
           Ops ocorreu um erro
         </span>
       )}
-      <div>
-        Lista de usuários
-        <table>
-          <thead>
-            <tr>
-              {
-                header.map((h, i) => (
-                  <td
-                    key={ Math.random() * i }
-                  >
-                    { h }
-                  </td>
-                ))
-              }
-            </tr>
-          </thead>
-          <tbody>
-            {users.length > 0 && (
-              users.map((userOne, ind) => (
-                <tr key={ Math.random() * ind }>
-                  <td
-                    data-testid={ `admin_manage__element-user-table-item-number-${ind}` }
-                  >
-                    { ind + 1 }
-                  </td>
-                  <td
-                    data-testid={ `admin_manage__element-user-table-name-${ind}` }
-                  >
-                    { userOne.name }
-                  </td>
-                  <td
-                    data-testid={ `admin_manage__element-user-table-email-${ind}` }
-                  >
-                    { userOne.email }
-                  </td>
-                  <td
-                    data-testid={ `admin_manage__element-user-table-role-${ind}` }
-                  >
-                    { userOne.role }
-                  </td>
-                  <td>
-                    <button
-                      type="button"
-                      data-testid={ `admin_manage__element-user-table-remove-${ind}` }
-                      onClick={ () => removeItem(userOne.id) }
+      <div className="mb-8 text-center ">
+        <div
+          className="mb-8 text-center font-bold"
+        >
+
+          Lista de usuários
+        </div>
+        <div
+          className="relative overflow-x-auto"
+        >
+
+          <table
+            className="w-full text-sm m-auto text-center
+          justify-between text-black-500 dark:text-gray-400"
+          >
+            <thead>
+              <tr className=" font-bold">
+                {
+                  header.map((h, i) => (
+                    <td
+                      key={ Math.random() * i }
                     >
-                      Excluir
-                    </button>
-                  </td>
-                </tr>
-              )))}
-          </tbody>
-        </table>
+                      { h }
+                    </td>
+                  ))
+                }
+              </tr>
+            </thead>
+            <tbody>
+              {users.length > 0 && (
+                users.map((userOne, ind) => (
+                  <tr
+                    className='className="px-4 py-2"'
+                    key={ Math.random() * ind }
+                  >
+                    <td
+                      data-testid={ `admin_manage__
+                      element-user-table-item-number-${ind}` }
+                    >
+                      { ind + 1 }
+                    </td>
+                    <td
+                      data-testid={ `admin_manage__element-user-table-name-${ind}` }
+                    >
+                      { userOne.name }
+                    </td>
+                    <td
+                      data-testid={ `admin_manage__element-user-table-email-${ind}` }
+                    >
+                      { userOne.email }
+                    </td>
+                    <td
+                      data-testid={ `admin_manage__element-user-table-role-${ind}` }
+                    >
+                      { userOne.role }
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        data-testid={ `admin_manage__element-user-table-remove-${ind}` }
+                        onClick={ () => removeItem(userOne.id) }
+                        className="bg-gray-200 p-1 rounded"
+                      >
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                )))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

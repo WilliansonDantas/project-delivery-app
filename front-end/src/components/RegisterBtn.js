@@ -8,6 +8,7 @@ function RegisterBtn() {
       onClick={ () => history.push('/register') }
       type="button"
       data-testid="common_login__button-register"
+      className="bg-gray-200 p-3 w-full rounded-lg"
     >
       Ainda não tenho conta
     </button>

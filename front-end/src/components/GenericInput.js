@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 function GenericInput({ type, selector, fieldName, placeholder, setter }) {
   return (
     <label htmlFor={ selector }>
-      { fieldName}
+
+      { `${fieldName} :` }
       <input
         data-testid="common_login__input-password"
         type={ type }
         id={ selector }
-        className={ selector }
+        className={ ` ${selector} email w-full block bg-black rounded p-2 text-white` }
         placeholder={ placeholder }
         onChange={ (e) => setter(e.target.value) }
       />

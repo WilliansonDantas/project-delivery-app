@@ -23,47 +23,60 @@ function SellerOrders() {
   }, []);
 
   return (
-    <div>
-      <NavbarSeller />
-      {sellerOrders.length > 0 && (
-        sellerOrders.map((seller) => (
-          <div
-            key={ seller.id }
-          >
-            <button
-              onClick={ () => history.push(`/seller/orders/${String(seller.id)}`) }
-              data-testid={ `seller_orders__element-order-id-${seller.id}` }
-              type="button"
-            >
-              <p>
-                { seller.id }
+    <div
+      className="bg-orange-200 min-h-screen"
+    >
+      <div>
 
-              </p>
-              <p
-                data-testid={ `seller_orders__element-delivery-status-${seller.id}` }
+        <NavbarSeller />
+      </div>
+      <div className="m-20"> </div>
+      <div className="flex ">
+
+        {sellerOrders.length > 0 && (
+          sellerOrders.map((seller) => (
+            <div
+              key={ seller.id }
+              className="flex m-10 justify-between "
+            >
+
+              <button
+                onClick={ () => history.push(`/seller/orders/${String(seller.id)}`) }
+                data-testid={ `seller_orders__element-order-id-${seller.id}` }
+                type="button"
+
               >
-                { seller.status }
-              </p>
-              <p
-                data-testid={ `seller_orders__element-order-date-${seller.id}` }
-              >
-                { seller.saleDate && seller.saleDate
-                  .slice(0, caracteres).split('-').reverse().join('/') }
-              </p>
-              <p
-                data-testid={ `seller_orders__element-card-price-${seller.id}` }
-              >
-                {`${((Number(seller.totalPrice))
-                  .toFixed(2)).toString().replace('.', ',')}`}
-              </p>
-              <p
-                data-testid={ `seller_orders__element-card-address-${seller.id}` }
-              >
-                { seller.deliveryAddress }
-              </p>
-            </button>
-          </div>
-        )))}
+                <p>
+                  { seller.id }
+
+                </p>
+
+                <p
+                  data-testid={ `seller_orders__element-delivery-status-${seller.id}` }
+                >
+                  { seller.status }
+                </p>
+                <p
+                  data-testid={ `seller_orders__element-order-date-${seller.id}` }
+                >
+                  { seller.saleDate && seller.saleDate
+                    .slice(0, caracteres).split('-').reverse().join('/') }
+                </p>
+                <p
+                  data-testid={ `seller_orders__element-card-price-${seller.id}` }
+                >
+                  {`${((Number(seller.totalPrice))
+                    .toFixed(2)).toString().replace('.', ',')}`}
+                </p>
+                <p
+                  data-testid={ `seller_orders__element-card-address-${seller.id}` }
+                >
+                  { seller.deliveryAddress }
+                </p>
+              </button>
+            </div>
+          )))}
+      </div>
     </div>
   );
 }

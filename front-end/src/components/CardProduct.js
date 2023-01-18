@@ -82,39 +82,79 @@ function Card({
   }, []);
 
   return (
-    <div>
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
-      <p data-testid={ `customer_products__element-card-price-${id}` }>
+    <div
+      className="w-full max-w-sm p-4 bg-white border border-gray-200
+    rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <p
+        data-testid={ `customer_products__element-card-title-${id}` }
+        className="text-xl font-medium text-gray-900 dark:text-white
+        text-center"
+
+      >
+        { name }
+
+      </p>
+      <p
+        data-testid={ `customer_products__element-card-price-${id}` }
+        className="text-xl font-medium text-gray-900 dark:text-white
+      text-center"
+      >
         { price.replace('.', ',') }
       </p>
-      <img
-        width="100px"
-        height="125px"
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ img }
-        alt={ name }
-      />
-      <button
-        data-testid={ `customer_products__button-card-add-item-${id}` }
-        type="button"
-        onClick={ () => addProduct() }
+      <div
+        className="flex items-center justify-center"
       >
-        +
-      </button>
-      <input
-        min={ 0 }
-        value={ quantity }
-        type="number"
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-        onChange={ (e) => modifyQuantityByInput(e.target.value) }
-      />
-      <button
-        data-testid={ `customer_products__button-card-rm-item-${id}` }
-        type="button"
-        onClick={ () => rmProduct() }
-      >
-        -
-      </button>
+
+        <img
+          style={ {
+            width: '100px',
+            height: '125px',
+          } }
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ img }
+          alt={ name }
+          className=" rounded-t-lg"
+        />
+      </div>
+      <div className="flex items-center justify-center">
+
+        <button
+          data-testid={ `customer_products__button-card-add-item-${id}` }
+          type="button"
+          onClick={ () => addProduct() }
+          className=" text-white bg-blue-700 hover:bg-blue-800
+        focus:ring-4 focus:outline-none
+         focus:ring-blue-300 font-medium rounded-lg
+         text-sm px-5 py-2.5 text-center dark:bg-blue-600
+         dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          +
+        </button>
+        <input
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
+        rounded-lg focus:ring-blue-500 focus:border-blue-500
+        block p-2.5 w-12 dark:bg-gray-600 dark:border-gray-500
+        dark:placeholder-gray-400 dark:text-white"
+          min={ 0 }
+          value={ quantity }
+          type="number"
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          onChange={ (e) => modifyQuantityByInput(e.target.value) }
+        />
+        <button
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
+          type="button"
+          onClick={ () => rmProduct() }
+          className=" text-white bg-blue-700 hover:bg-blue-800
+        focus:ring-4 focus:outline-none
+        focus:ring-blue-300 font-medium rounded-lg
+         text-sm px-5 py-2.5 text-center dark:bg-blue-600
+          dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          -
+        </button>
+      </div>
     </div>
   );
 }
