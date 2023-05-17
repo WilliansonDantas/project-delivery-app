@@ -1,6 +1,8 @@
-# Boas vindas ao repositório do projeto App de Delivery!
+# App de Delivery!
 
-**Este foi um projeto em grupo realizado durante o meu curso na Trybe, onde foi desenvolvido um app de delivery para uma distribuidora de bebidas.**
+O App de Delivery foi um projeto em grupo realizado durante o meu curso na Trybe, onde foi desenvolvido um app de delivery para uma distribuidora de bebidas.
+
+-----
 
 A distribuidora de cervejas da dona Tereza está se informatizando! 🚀 
 
