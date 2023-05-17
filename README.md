@@ -4,6 +4,8 @@ O App de Delivery foi um projeto em grupo realizado durante o meu curso na Trybe
 
 -----
 
+### <img height="20" src="https://raw.githubusercontent.com/innng/innng/master/assets/soulgem-sayaka.gif"/> Contextualização:
+
 A distribuidora de cervejas da dona Tereza está se informatizando! 🚀 
 
 Seu negócio, antes focado em um local específico da cidade, passou a receber uma quantidade massiva de encomendas de outros pontos, expandindo sua atuação via delivery. Isso tudo graças ao excelente preço das bebidas e atendimento da equipe de vendas.
@@ -19,12 +21,4 @@ Como seu antigo sistema, que era um conjunto de planilhas, já não atende a nec
 - Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora em seu dash de pedidos após a atualização da página. A pessoa cliente, por sua vez, deve ter as informações sobre seu pedido quando sua página for atualizada, ou seja, ter informações se o pedido está sendo preparado ou se já saiu pra entrega;
 
 <!-- 
-
-
-  
-### 1. A pessoa cliente, que compra da lista de produtos;
-  
-### 2. A pessoa vendedora, que aprova, prepara e entrega;
-  
-### 3. A pessoa administradora, que gerencia quem usa o aplicativo;
 -->
