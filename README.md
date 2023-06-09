@@ -41,5 +41,25 @@ Há um gerenciador de processos (PM2) para rodar a aplicação. Rode o comando a
 npm start
 ```
 
+### <img height="20" src="https://raw.githubusercontent.com/innng/innng/master/assets/soulgem-sayaka.gif"/> Fluxo de Cliente:
+
+- O cliente deverá fazer o login, caso não possua conta, poderá criar uma outra conta que será registrada no banco de dados.
+
+- Assim que estiver logado, deverá escolher quais cervejas irá comprar e realizar o pedido selecionando o vendedor respectivo.
+
+- Usuário inicialmente registrado: 
+
+email: 
+
+```
+zebirita@email.com
+```
+
+senha: 
+
+```
+$#zebirita#$
+```
+
 <!-- 
 -->
