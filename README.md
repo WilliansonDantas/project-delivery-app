@@ -61,5 +61,25 @@ senha:
 $#zebirita#$
 ```
 
+
+### <img height="20" src="https://raw.githubusercontent.com/innng/innng/master/assets/soulgem-sayaka.gif"/> Fluxo do Vendedor:
+
+- Assim que o pedido for efetuado, o vendedor irá receber e deve alterar os status conforme o andamento do pedido.
+
+- Usuário inicialmente registrado: 
+
+email: 
+
+```
+fulana@deliveryapp.com
+```
+
+senha: 
+
+```
+fulana@123
+```
+
+
 <!-- 
 -->
