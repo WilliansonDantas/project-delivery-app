@@ -61,7 +61,6 @@ senha:
 $#zebirita#$
 ```
 
-
 ### <img height="20" src="https://raw.githubusercontent.com/innng/innng/master/assets/soulgem-sayaka.gif"/> Fluxo do Vendedor:
 
 - Assim que o pedido for efetuado, o vendedor irá receber e deve alterar os status conforme o andamento do pedido.
@@ -78,6 +77,24 @@ senha:
 
 ```
 fulana@123
+```
+
+### <img height="20" src="https://raw.githubusercontent.com/innng/innng/master/assets/soulgem-sayaka.gif"/> Fluxo do Admin:
+
+- O admin é o que gerencia todos os usuários no banco de dados podendo adicionar e/ou remover.
+
+- Usuário inicialmente registrado: 
+
+email: 
+
+```
+adm@deliveryapp.com
+```
+
+senha: 
+
+```
+--adm2@21!!--
 ```
 
 
