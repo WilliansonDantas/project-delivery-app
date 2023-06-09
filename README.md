@@ -25,12 +25,15 @@ Como seu antigo sistema, que era um conjunto de planilhas, já não atende a nec
 
 Clone o repositório
 
-```git@github.com:WilliansonDantas/project-delivery-app.git```
-
+```
+git@github.com:WilliansonDantas/project-delivery-app.git
+```
 
 Há um gerenciador de processos (PM2) para rodar a aplicação. Rode o comando na raiz do projeto e assim a aplicação já estará pronta para o uso.
 
-```npm start```
+```
+npm start
+```
 
 <!-- 
 -->
