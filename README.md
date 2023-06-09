@@ -26,7 +26,7 @@ Como seu antigo sistema, que era um conjunto de planilhas, já não atende a nec
 Clone o repositório
 
 ```
-git@github.com:WilliansonDantas/project-delivery-app.git
+git clone git@github.com:WilliansonDantas/project-delivery-app.git
 ```
 
 Acesse o diretório do projeto
