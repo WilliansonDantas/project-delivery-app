@@ -35,6 +35,12 @@ Acesse o diretório do projeto
 cd project-delivery-app
 ```
 
+Execute o gerenciador de contêineres, Docker-Compose
+
+```
+docker-compose up -d
+```
+
 Há um gerenciador de processos (PM2) para rodar a aplicação. Rode o comando a seguir e a aplicação já estará pronta para o uso.
 
 ```
