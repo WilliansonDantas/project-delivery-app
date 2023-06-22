@@ -2,6 +2,9 @@
 
 O App de Delivery foi um projeto em grupo realizado durante o meu curso na Trybe, onde foi desenvolvido um app de delivery para uma distribuidora de bebidas.
 
+![image](https://github.com/WilliansonDantas/project-delivery-app/assets/99999728/3447fbae-07b0-4d99-b79c-f120b2c00be8)
+
+
 -----
 
 ### <img height="20" src="https://raw.githubusercontent.com/innng/innng/master/assets/soulgem-sayaka.gif"/> Contextualização:
